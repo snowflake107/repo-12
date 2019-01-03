@@ -10,12 +10,17 @@
 
 function check_nginx_proxy_container_run {
     local _nginx_proxy_container=$(get_nginx_proxy_container)
-    if [[ $(docker_api "/containers/${_nginx_proxy_container}/json" | jq -r '.State.Status') = "running" ]];then
-        return 0
-    fi
-
-    echo "$(date "+%Y/%m/%d %T"), Error: nginx-proxy container ${_nginx_proxy_container}  isn't running." >&2
-    return 1
+    if [[ -n "$_nginx_proxy_container" ]]; then
+        if [[ $(docker_api "/containers/${_nginx_proxy_container}/json" | jq -r '.State.Status') = "running" ]];then
+            return 0
+        else
+            echo "$(date "+%Y/%m/%d %T") Error: nginx-proxy container ${_nginx_proxy_container} isn't running." >&2
+            return 1
+        fi
+    else
+        echo "$(date "+%Y/%m/%d %T") Error: could not get a nginx-proxy container ID." >&2
+        return 1
+fi
 }
 
 function add_location_configuration {
@@ -39,6 +44,38 @@ function remove_all_location_configurations {
          sed -i "/$START_HEADER/,/$END_HEADER/d" "$file"
     done
     eval "$old_shopt_options" # Restore shopt options
+}
+
+function check_cert_min_validity {
+    # Check if a certificate ($1) is still valid for a given amount of time in seconds ($2).
+    # Returns 0 if the certificate is still valid for this amount of time, 1 otherwise.
+    local cert_path="$1"
+    local min_validity="$(( $(date "+%s") + $2 ))"
+
+    local cert_expiration
+    cert_expiration="$(openssl x509 -noout -enddate -in "$cert_path" | cut -d "=" -f 2)"
+    cert_expiration="$(date --utc --date "${cert_expiration% GMT}" "+%s")"
+
+    [[ $cert_expiration -gt $min_validity ]] || return 1
+}
+
+function get_self_cid {
+    DOCKER_PROVIDER=${DOCKER_PROVIDER:-docker}
+
+    case "${DOCKER_PROVIDER}" in
+    ecs|ECS)
+        # AWS ECS. Enabled in /etc/ecs/ecs.config (http://docs.aws.amazon.com/AmazonECS/latest/developerguide/container-metadata.html)
+        if [[ -n "${ECS_CONTAINER_METADATA_FILE:-}" ]]; then
+            grep ContainerID "${ECS_CONTAINER_METADATA_FILE}" | sed 's/.*: "\(.*\)",/\1/g'
+        else
+            echo "${DOCKER_PROVIDER} specified as 'ecs' but not available. See: http://docs.aws.amazon.com/AmazonECS/latest/developerguide/container-metadata.html" >&2
+            exit 1
+        fi
+        ;;
+    *)
+        sed -nE 's/^.+docker[\/-]([a-f0-9]{64}).*/\1/p' /proc/self/cgroup | head -n 1
+        ;;
+    esac
 }
 
 ## Docker API
@@ -75,6 +112,11 @@ function docker_exec {
         echo "$(date "+%Y/%m/%d %T"), Error: can't exec command ${cmd} in container ${id}. Check if the container is running." >&2
         return 1
     fi
+}
+
+function docker_restart {
+    local id="${1?missing id}"
+    docker_api "/containers/$id/restart" "POST"
 }
 
 function docker_kill {
@@ -121,7 +163,7 @@ function get_nginx_proxy_container {
             nginx_cid="$NGINX_PROXY_CONTAINER"
         # ... else try to get the container ID with the volumes_from method.
         else
-            volumes_from=$(docker_api "/containers/$CONTAINER_ID/json" | jq -r '.HostConfig.VolumesFrom[]' 2>/dev/null)
+            volumes_from=$(docker_api "/containers/${SELF_CID:-$(get_self_cid)}/json" | jq -r '.HostConfig.VolumesFrom[]' 2>/dev/null)
             for cid in $volumes_from; do
                 cid="${cid%:*}" # Remove leading :ro or :rw set by remote docker-compose (thx anoopr)
                 if [[ $(docker_api "/containers/$cid/json" | jq -r '.Config.Env[]' | egrep -c '^NGINX_VERSION=') = "1" ]];then
@@ -155,10 +197,92 @@ function reload_nginx {
         if [[ -n "${_nginx_proxy_container:-}" ]]; then
             echo "Reloading nginx proxy (${_nginx_proxy_container})..."
             docker_exec "${_nginx_proxy_container}" \
-                        '[ "sh", "-c", "/usr/local/bin/docker-gen /app/nginx.tmpl /etc/nginx/conf.d/default.conf; /usr/sbin/nginx -s reload" ]'
-            [[ $? -eq 1 ]] && echo "$(date "+%Y/%m/%d %T"), Error: can't reload nginx-proxy." >&2
+                '[ "sh", "-c", "/app/docker-entrypoint.sh /usr/local/bin/docker-gen /app/nginx.tmpl /etc/nginx/conf.d/default.conf; /usr/sbin/nginx -s reload" ]' \
+                | sed -rn 's/^.*([0-9]{4}\/[0-9]{2}\/[0-9]{2}.*$)/\1/p'
+            [[ ${PIPESTATUS[0]} -eq 1 ]] && echo "$(date "+%Y/%m/%d %T"), Error: can't reload nginx-proxy." >&2
         fi
     fi
+}
+
+function set_ownership_and_permissions {
+  local path="${1:?}"
+  # The default ownership is root:root, with 755 permissions for folders and 644 for files.
+  local user="${FILES_UID:-root}"
+  local group="${FILES_GID:-$user}"
+  local f_perms="${FILES_PERMS:-644}"
+  local d_perms="${FOLDERS_PERMS:-755}"
+
+  if [[ ! "$f_perms" =~ ^[0-7]{3,4}$ ]]; then
+    echo "Warning : the provided files permission octal ($f_perms) is incorrect. Skipping ownership and permissions check."
+    return 1
+  fi
+  if [[ ! "$d_perms" =~ ^[0-7]{3,4}$ ]]; then
+    echo "Warning : the provided folders permission octal ($d_perms) is incorrect. Skipping ownership and permissions check."
+    return 1
+  fi
+
+  # Find the user numeric ID if the FILES_UID environment variable isn't numeric.
+  if [[ "$user" =~ ^[0-9]+$ ]]; then
+    user_num="$user"
+  # Check if this user exist inside the container
+  elif id -u "$user" > /dev/null 2>&1; then
+    # Convert the user name to numeric ID
+    local user_num="$(id -u "$user")"
+    [[ "$(lc $DEBUG)" == true ]] && echo "Debug: numeric ID of user $user is $user_num."
+  else
+    echo "Warning: user $user not found in the container, please use a numeric user ID instead of a user name. Skipping ownership and permissions check."
+    return 1
+  fi
+
+  # Find the group numeric ID if the FILES_GID environment variable isn't numeric.
+  if [[ "$group" =~ ^[0-9]+$ ]]; then
+    group_num="$group"
+  # Check if this group exist inside the container
+  elif getent group "$group" > /dev/null 2>&1; then
+    # Convert the group name to numeric ID
+    local group_num="$(getent group "$group" | awk -F ':' '{print $3}')"
+    [[ "$(lc $DEBUG)" == true ]] && echo "Debug: numeric ID of group $group is $group_num."
+  else
+    echo "Warning: group $group not found in the container, please use a numeric group ID instead of a group name. Skipping ownership and permissions check."
+    return 1
+  fi
+
+  # Check and modify ownership if required.
+  if [[ -e "$path" ]]; then
+    if [[ "$(stat -c %u:%g "$path" )" != "$user_num:$group_num" ]]; then
+      [[ "$(lc $DEBUG)" == true ]] && echo "Debug: setting $path ownership to $user:$group."
+      if [[ -L "$path" ]]; then
+        chown -h "$user_num:$group_num" "$path"
+      else
+        chown "$user_num:$group_num" "$path"
+      fi
+    fi
+    # If the path is a folder, check and modify permissions if required.
+    if [[ -d "$path" ]]; then
+      if [[ "$(stat -c %a "$path")" != "$d_perms" ]]; then
+        [[ "$(lc $DEBUG)" == true ]] && echo "Debug: setting $path permissions to $d_perms."
+        chmod "$d_perms" "$path"
+      fi
+    # If the path is a file, check and modify permissions if required.
+    elif [[ -f "$path" ]]; then
+      # Use different permissions for private files (private keys and ACME account keys) ...
+      if [[ "$path" =~ ^.*(default\.key|key\.pem|\.json)$ ]]; then
+        if [[ "$(stat -c %a "$path")" != "$f_perms" ]]; then
+          [[ "$(lc $DEBUG)" == true ]] && echo "Debug: setting $path permissions to $f_perms."
+          chmod "$f_perms" "$path"
+        fi
+      # ... and for public files (certificates, chains, fullchains, DH parameters).
+      else
+        if [[ "$(stat -c %a "$path")" != "644" ]]; then
+          [[ "$(lc $DEBUG)" == true ]] && echo "Debug: setting $path permissions to 644."
+          chmod "644" "$path"
+        fi
+      fi
+    fi
+  else
+    echo "Warning: $path does not exist. Skipping ownership and permissions check."
+    return 1
+  fi
 }
 
 # Convert argument to lowercase (bash 4 only)

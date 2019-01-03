@@ -6,13 +6,14 @@
 
 letsencrypt-nginx-proxy-companion is a lightweight companion container for the [nginx-proxy](https://github.com/jwilder/nginx-proxy). It allows the creation/renewal of Let's Encrypt certificates automatically. See [Let's Encrypt section](#lets-encrypt) for configuration details.
 
+Please note that [letsencrypt-nginx-proxy-companion does not work with ACME v2 endpoints yet](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion/issues/319).
+
 ### Features:
 * Automatic creation/renewal of Let's Encrypt certificates using original nginx-proxy container.
 * Support creation of Multi-Domain ([SAN](https://www.digicert.com/subject-alternative-name.htm)) Certificates.
-* Automatically creation of a Strong Diffie-Hellman Group (for having an A+ Rate on the [Qualsys SSL Server Test](https://www.ssllabs.com/ssltest/)).
+* Automatic creation of a Strong Diffie-Hellman Group (for having an A+ Rate on the [Qualsys SSL Server Test](https://www.ssllabs.com/ssltest/)).
+* Automatic creation of a self-signed [default certificate](https://github.com/jwilder/nginx-proxy#how-ssl-support-works) if a user-provided one can't be found.
 * Work with all versions of docker.
-
-***NOTE***: The first time this container is launched it generates a new Diffie-Hellman group file. This process can take several minutes to complete (be patient).
 
 ![schema](./schema.png)
 
@@ -173,6 +174,9 @@ If needed, you can force a running letsencrypt-nginx-proxy-companion container t
 ```bash
 $ docker exec nginx-letsencrypt /app/force_renew
 ```
+
+##### Restart container on certificate renewal
+Per default letsencrypt-nginx-proxy-companion only reloads the nginx-proxy container when new certificates are issued or renewed. But it may be desirable to use the certificates inside the containers for other purposes than HTTPS (e.g. FTPS Server), and that would require to also restart the containers using the certificates, whenever these certificates are renewed. This can be achieved by defining the `LETSENCRYPT_RESTART_CONTAINER` environment variable with a value of `true` for the containers that you want to be restarted on certificate renewal (and have the `LETSENCRYPT_HOST` variable set).
 
 ##### Show certificates informations
 To display informations about your existing certificates, use the following command:
