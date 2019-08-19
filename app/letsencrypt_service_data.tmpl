@@ -17,7 +17,7 @@ LETSENCRYPT_CONTAINERS=(
 )
 
 {{ range $hosts, $containers := groupBy $ "Env.LETSENCRYPT_HOST" }}
-    {{ if trim $hosts }}
+    {{ if trimSuffix "," $hosts }}
         {{ range $container := $containers }}
             {{ range $knownNetwork := $CurrentContainer.Networks }}
                 {{ range $containerNetwork := $container.Networks }}
@@ -29,6 +29,7 @@ LETSENCRYPT_CONTAINERS=(
                         LETSENCRYPT_{{ $cid }}_TEST="{{ $container.Env.LETSENCRYPT_TEST }}"
                         LETSENCRYPT_{{ $cid }}_ACCOUNT_ALIAS="{{ $container.Env.LETSENCRYPT_ACCOUNT_ALIAS }}"
                         LETSENCRYPT_{{ $cid }}_RESTART_CONTAINER="{{ $container.Env.LETSENCRYPT_RESTART_CONTAINER }}"
+                        LETSENCRYPT_{{ $cid }}_MIN_VALIDITY="{{ $container.Env.LETSENCRYPT_MIN_VALIDITY }}"
                     {{ end }}
                 {{ end }}
             {{ end }}
