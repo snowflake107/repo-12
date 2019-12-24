@@ -23,10 +23,61 @@ function check_nginx_proxy_container_run {
 fi
 }
 
+function ascending_wildcard_locations {
+    # Given foo.bar.baz.example.com as argument, will output:
+    # - *.bar.baz.example.com
+    # - *.baz.example.com
+    # - *.example.com
+    local domain="${1:?}"
+    local first_label
+    regex="^[[:alnum:]_\-]+(\.[[:alpha:]]+)?$"
+    until [[ "$domain" =~ $regex ]]; do
+      first_label="${domain%%.*}"
+      domain="${domain/${first_label}./}"
+      echo "*.${domain}"
+    done
+}
+
+function descending_wildcard_locations {
+    # Given foo.bar.baz.example.com as argument, will output:
+    # - foo.bar.baz.example.*
+    # - foo.bar.baz.*
+    # - foo.bar.*
+    # - foo.*
+    local domain="${1:?}"
+    local last_label
+    regex="^[[:alnum:]_\-]+$"
+    until [[ "$domain" =~ $regex ]]; do
+      last_label="${domain##*.}"
+      domain="${domain/.${last_label}/}"
+      echo "${domain}.*"
+    done
+}
+
+function enumerate_wildcard_locations {
+    # Goes through ascending then descending wildcard locations for a given FQDN
+    local domain="${1:?}"
+    ascending_wildcard_locations "$domain"
+    descending_wildcard_locations "$domain"
+}
+
 function add_location_configuration {
     local domain="${1:-}"
-    # If no domain was passed or if the domain has no custom conf, use default instead
-    [[ -z "$domain" || ! -f "${VHOST_DIR}/${domain}" ]] && domain=default
+    local wildcard_domain
+    # If no domain was passed use default instead
+    [[ -z "$domain" ]] && domain='default'
+
+    # If the domain does not have an exact matching location file, test the possible
+    # wildcard locations files. Use default is no location file is present at all.
+    if [[ ! -f "${VHOST_DIR}/${domain}" ]]; then
+      for wildcard_domain in $(enumerate_wildcard_locations "$domain"); do
+        if [[ -f "${VHOST_DIR}/${wildcard_domain}" ]]; then
+          domain="$wildcard_domain"
+          break
+        fi
+        domain='default'
+      done
+    fi
 
     if [[ -f "${VHOST_DIR}/${domain}" && -n $(sed -n "/$START_HEADER/,/$END_HEADER/p" "${VHOST_DIR}/${domain}") ]]; then
         # If the config file exist and already have the location configuration, end with exit code 0
@@ -234,6 +285,8 @@ function set_ownership_and_permissions {
     return 1
   fi
 
+  [[ "$(lc $DEBUG)" == true ]] && echo "Debug: checking $path ownership and permissions."
+
   # Find the user numeric ID if the FILES_UID environment variable isn't numeric.
   if [[ "$user" =~ ^[0-9]+$ ]]; then
     user_num="$user"
@@ -278,7 +331,7 @@ function set_ownership_and_permissions {
       fi
     # If the path is a file, check and modify permissions if required.
     elif [[ -f "$path" ]]; then
-      # Use different permissions for private files (private keys and ACME account keys) ...
+      # Use different permissions for private files (private keys and ACME account files) ...
       if [[ "$path" =~ ^.*(default\.key|key\.pem|\.json)$ ]]; then
         if [[ "$(stat -c %a "$path")" != "$f_perms" ]]; then
           [[ "$(lc $DEBUG)" == true ]] && echo "Debug: setting $path permissions to $f_perms."

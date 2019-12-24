@@ -8,7 +8,7 @@
 
 It handles the automated creation, renewal and use of Let's Encrypt certificates for proxyed Docker containers.
 
-Please note that [letsencrypt-nginx-proxy-companion does not work with ACME v2 endpoints yet](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion/issues/319).
+Please note that **letsencrypt-nginx-proxy-companion** no longer supports ACME v1 endpoints. The last tagged version that supports ACME v1 is [v1.11](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion/releases/tag/v1.11.2)
 
 ### Features:
 * Automated creation/renewal of Let's Encrypt (or other ACME CAs) certificates using [**simp_le**](https://github.com/zenhack/simp_le).
@@ -23,7 +23,7 @@ Please note that [letsencrypt-nginx-proxy-companion does not work with ACME v2 e
 * Check your firewall rules and **do not attempt to block port `80`** as that will prevent `http-01` challenges from completing.
 * For the same reason, you can't use nginx-proxy's [`HTTPS_METHOD=nohttp`](https://github.com/jwilder/nginx-proxy#how-ssl-support-works).
 * The (sub)domains you want to issue certificates for must correctly resolve to the host.
-* Your DNS provider must [answers correctly to CAA record requests](https://letsencrypt.org/docs/caa/).
+* Your DNS provider must [answer correctly to CAA record requests](https://letsencrypt.org/docs/caa/).
 * If your (sub)domains have AAAA records set, the host must be publicly reachable over IPv6 on port `80` and `443`.
 
 ![schema](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion/blob/master/schema.png)
