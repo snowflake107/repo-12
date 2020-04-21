@@ -23,7 +23,7 @@ LETSENCRYPT_CONTAINERS=({{ range $hosts, $containers := groupBy $ "Env.LETSENCRY
         {{ range $container := $containers }}
             {{ $cid := printf "%.12s" $container.ID }}
             {{ if intersect $scopedContainersSlice (split $cid " ") }}
-                {{ if ($container.Env.LETSENCRYPT_STANDALONE_CERTS) and eq $container.Env.LETSENCRYPT_STANDALONE_CERTS "true" }}
+                {{ if parseBool (coalesce $container.Env.LETSENCRYPT_STANDALONE_CERTS "false") }}
                     {{ range $host := split $hosts "," }}
                         {{ $host := trim $host }}
                         '{{ printf "%.12s_%s" $container.ID (sha1 $host) }}'
@@ -41,7 +41,7 @@ LETSENCRYPT_CONTAINERS=({{ range $hosts, $containers := groupBy $ "Env.LETSENCRY
     {{ range $container := $containers }}
         {{ $cid := printf "%.12s" $container.ID }}
         {{ if intersect $scopedContainersSlice (split $cid " ") }}
-            {{ if ($container.Env.LETSENCRYPT_STANDALONE_CERTS) and eq $container.Env.LETSENCRYPT_STANDALONE_CERTS "true" }}
+            {{ if parseBool (coalesce $container.Env.LETSENCRYPT_STANDALONE_CERTS "false") }}
                 {{ range $host := split $hosts "," }}
                     {{ $host := trim $host }}
                     {{ $hostHash := sha1 $host }}
