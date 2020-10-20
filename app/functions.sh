@@ -104,7 +104,7 @@ function add_location_configuration {
 
 function add_standalone_configuration {
     local domain="${1:?}"
-    if grep -q $domain "/etc/nginx/conf.d/default.conf"; then
+    if grep -q "$domain" "/etc/nginx/conf.d/default.conf"; then
         # If the domain is already present in nginx's conf, use the location configuration.
         add_location_configuration "$domain"
     else
@@ -116,6 +116,7 @@ server {
     access_log /var/log/nginx/access.log vhost;
     location ^~ /.well-known/acme-challenge/ {
         auth_basic off;
+        auth_request off;
         allow all;
         root /usr/share/nginx/html;
         try_files \$uri =404;
@@ -127,7 +128,7 @@ EOF
 }
 
 function remove_all_standalone_configurations {
-    local old_shopt_options=$(shopt -p) # Backup shopt options
+    local old_shopt_options; old_shopt_options=$(shopt -p) # Backup shopt options
     shopt -s nullglob
     for file in "/etc/nginx/conf.d/standalone-cert-"*".conf"; do
       rm -f "$file"

@@ -12,8 +12,8 @@ imageTests+=(
 	default_cert
 	certs_single
 	certs_san
+	certs_single_domain
 	certs_standalone
-	certs_standalone_from_env
 	force_renew
 	certs_validity
 	container_restart
