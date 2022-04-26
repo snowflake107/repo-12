@@ -5,7 +5,24 @@ function lc {
 	echo "${@,,}"
 }
 
-DEBUG="$(lc "$DEBUG")"
+DEBUG="$(lc "${DEBUG:-}")"
+if [[ "$DEBUG" == true ]]; then
+  DEBUG=1 && export DEBUG
+fi
+
+function parse_true() {
+	case "$1" in
+
+		true | True | TRUE | 1)
+		return 0
+		;;
+
+		*)
+		return 1
+		;;
+
+	esac
+}
 
 [[ -z "${VHOST_DIR:-}" ]] && \
  declare -r VHOST_DIR=/etc/nginx/vhost.d
@@ -40,7 +57,11 @@ function ascending_wildcard_locations {
     until [[ "$domain" =~ $regex ]]; do
       first_label="${domain%%.*}"
       domain="${domain/${first_label}./}"
-      echo "*.${domain}"
+      if [[ -z "$domain" ]]; then
+        return
+      else
+        echo "*.${domain}"
+      fi
     done
 }
 
@@ -56,7 +77,11 @@ function descending_wildcard_locations {
     until [[ "$domain" =~ $regex ]]; do
       last_label="${domain##*.}"
       domain="${domain/.${last_label}/}"
-      echo "${domain}.*"
+      if [[ -z "$domain" ]]; then
+        return
+      else
+        echo "${domain}.*"
+      fi
     done
 }
 
@@ -76,13 +101,13 @@ function add_location_configuration {
     # If the domain does not have an exact matching location file, test the possible
     # wildcard locations files. Use default is no location file is present at all.
     if [[ ! -f "${VHOST_DIR}/${domain}" ]]; then
-      for wildcard_domain in $(enumerate_wildcard_locations "$domain"); do
+      while read -r wildcard_domain; do
         if [[ -f "${VHOST_DIR}/${wildcard_domain}" ]]; then
           domain="$wildcard_domain"
           break
         fi
         domain='default'
-      done
+      done <<< "$(enumerate_wildcard_locations "$domain")"
     fi
 
     if [[ -f "${VHOST_DIR}/${domain}" && -n $(sed -n "/$START_HEADER/,/$END_HEADER/p" "${VHOST_DIR}/${domain}") ]]; then
@@ -104,7 +129,7 @@ function add_location_configuration {
 
 function add_standalone_configuration {
     local domain="${1:?}"
-    if grep -q "server_name ${domain};" "/etc/nginx/conf.d/default.conf"; then
+    if grep -q "server_name ${domain};" /etc/nginx/conf.d/*.conf; then
         # If the domain is already present in nginx's conf, use the location configuration.
         add_location_configuration "$domain"
     else
@@ -325,7 +350,7 @@ function set_ownership_and_permissions {
     return 1
   fi
 
-  [[ "$DEBUG" == true ]] && echo "Debug: checking $path ownership and permissions."
+  [[ "$DEBUG" == 1 ]] && echo "Debug: checking $path ownership and permissions."
 
   # Find the user numeric ID if the FILES_UID environment variable isn't numeric.
   if [[ "$user" =~ ^[0-9]+$ ]]; then
@@ -334,7 +359,7 @@ function set_ownership_and_permissions {
   elif id -u "$user" > /dev/null 2>&1; then
     # Convert the user name to numeric ID
     local user_num; user_num="$(id -u "$user")"
-    [[ "$DEBUG" == true ]] && echo "Debug: numeric ID of user $user is $user_num."
+    [[ "$DEBUG" == 1 ]] && echo "Debug: numeric ID of user $user is $user_num."
   else
     echo "Warning: user $user not found in the container, please use a numeric user ID instead of a user name. Skipping ownership and permissions check."
     return 1
@@ -347,7 +372,7 @@ function set_ownership_and_permissions {
   elif getent group "$group" > /dev/null 2>&1; then
     # Convert the group name to numeric ID
     local group_num; group_num="$(getent group "$group" | awk -F ':' '{print $3}')"
-    [[ "$DEBUG" == true ]] && echo "Debug: numeric ID of group $group is $group_num."
+    [[ "$DEBUG" == 1 ]] && echo "Debug: numeric ID of group $group is $group_num."
   else
     echo "Warning: group $group not found in the container, please use a numeric group ID instead of a group name. Skipping ownership and permissions check."
     return 1
@@ -356,7 +381,7 @@ function set_ownership_and_permissions {
   # Check and modify ownership if required.
   if [[ -e "$path" ]]; then
     if [[ "$(stat -c %u:%g "$path" )" != "$user_num:$group_num" ]]; then
-      [[ "$DEBUG" == true ]] && echo "Debug: setting $path ownership to $user:$group."
+      [[ "$DEBUG" == 1 ]] && echo "Debug: setting $path ownership to $user:$group."
       if [[ -L "$path" ]]; then
         chown -h "$user_num:$group_num" "$path"
       else
@@ -366,7 +391,7 @@ function set_ownership_and_permissions {
     # If the path is a folder, check and modify permissions if required.
     if [[ -d "$path" ]]; then
       if [[ "$(stat -c %a "$path")" != "$d_perms" ]]; then
-        [[ "$DEBUG" == true ]] && echo "Debug: setting $path permissions to $d_perms."
+        [[ "$DEBUG" == 1 ]] && echo "Debug: setting $path permissions to $d_perms."
         chmod "$d_perms" "$path"
       fi
     # If the path is a file, check and modify permissions if required.
@@ -374,13 +399,13 @@ function set_ownership_and_permissions {
       # Use different permissions for private files (private keys and ACME account files) ...
       if [[ "$path" =~ ^.*(default\.key|key\.pem|\.json)$ ]]; then
         if [[ "$(stat -c %a "$path")" != "$f_perms" ]]; then
-          [[ "$DEBUG" == true ]] && echo "Debug: setting $path permissions to $f_perms."
+          [[ "$DEBUG" == 1 ]] && echo "Debug: setting $path permissions to $f_perms."
           chmod "$f_perms" "$path"
         fi
       # ... and for public files (certificates, chains, fullchains, DH parameters).
       else
         if [[ "$(stat -c %a "$path")" != "644" ]]; then
-          [[ "$DEBUG" == true ]] && echo "Debug: setting $path permissions to 644."
+          [[ "$DEBUG" == 1 ]] && echo "Debug: setting $path permissions to 644."
           chmod "644" "$path"
         fi
       fi

@@ -1,31 +1,8 @@
 ## Persistent data
 
-### Anonymous volumes
-
-When you follow instructions from Basic usage or Advanced usage, Docker will automatically create **anonymous volumes** (volumes with a random name) for every `--volume` / `-v` argument passed:
-
-```shell
-$ docker run -d \
-    --name nginx-proxy \
-    -p 80:80 \
-    -p 443:443 \
-    -v /etc/nginx/certs \
-    -v /etc/nginx/vhost.d \
-    -v /usr/share/nginx/html \
-    -v /var/run/docker.sock:/tmp/docker.sock:ro \
-    jwilder/nginx-proxy
-
-$ docker volume ls
-DRIVER              VOLUME NAME
-local               287be3abd610e5566500d719ceb8b952952f12c9324ef02d05785d4ee9737ae9
-local               6530b1b40cf89efb71aa7fd19bddec927fa2bcae59b04b9c1c850af72ffe0123
-local               f260f71fefadcdfc311d285d69151f2312915174d3fb1fab89949ec5ec871a54
-local               f2cd94ca48904dc9cfc840ce4b265a04831c580d525253d7a0e5aac4d1dca340
-```
-
 ### Named volumes (recommended)
 
-Using **named volumes** instead make managing volumes easier:
+When you follow instructions from Basic usage or Advanced usage, Docker will automatically create **named volumes** for every `--volume` / `-v` argument passed. Named volume will make it easy for you to mount the same persisted data even if you delete then re-create the container:
 
 ```shell
 $ docker run -d \
@@ -36,13 +13,35 @@ $ docker run -d \
     -v vhost:/etc/nginx/vhost.d \
     -v html:/usr/share/nginx/html \
     -v /var/run/docker.sock:/tmp/docker.sock:ro \
-    jwilder/nginx-proxy
+    nginxproxy/nginx-proxy
 
 $ docker volume ls
 DRIVER              VOLUME NAME
 local               certs
 local               vhost
 local               html
+```
+
+### Anonymous volumes (not recommended)
+
+If you don't prefix your volumes with a name, Docker will instead create **anonymous volumes** (volumes with a random name). Those volume persist after the container is deleted but aren't automatically re-mounted when you re-create the container. Their usage is **not recommended** as they don't provide any advantages over named volumes and make keeping tracks of what volume store which data way harder.
+
+```shell
+$ docker run -d \
+    --name nginx-proxy \
+    -p 80:80 \
+    -p 443:443 \
+    -v /etc/nginx/certs \
+    -v /etc/nginx/vhost.d \
+    -v /usr/share/nginx/html \
+    -v /var/run/docker.sock:/tmp/docker.sock:ro \
+    nginxproxy/nginx-proxy
+
+$ docker volume ls
+DRIVER              VOLUME NAME
+local               287be3abd610e5566500d719ceb8b952952f12c9324ef02d05785d4ee9737ae9
+local               6530b1b40cf89efb71aa7fd19bddec927fa2bcae59b04b9c1c850af72ffe0123
+local               f260f71fefadcdfc311d285d69151f2312915174d3fb1fab89949ec5ec871a54
 ```
 
 ### Host volumes
@@ -61,11 +60,11 @@ Example with named volumes:
 
 `-v certs:/etc/nginx/certs:ro` on the **nginx-proxy** or **nginx** + **docker-gen** container(s).
 
-`-v certs:/etc/nginx/certs:rw` on the **letsencrypt-nginx-proxy-companion** container.
+`-v certs:/etc/nginx/certs:rw` on the **acme-companion** container.
 
 ## Ownership & permissions of private and ACME account keys
 
-By default, the **letsencrypt-nginx-proxy-companion** container will enforce the following ownership and permissions scheme on the files it creates and manage:
+By default, the **acme-companion** container will enforce the following ownership and permissions scheme on the files it creates and manage:
 
 ```
 [drwxr-xr-x]  /etc/nginx/certs
@@ -88,7 +87,7 @@ By default, the **letsencrypt-nginx-proxy-companion** container will enforce the
 └── [lrwxrwxrwx root root]  domain.tld.key -> ./domain.tld/key.pem
 ```
 
-This behavior can be customized using the following environment variable on the **letsencrypt-nginx-proxy-companion** container:
+This behavior can be customized using the following environment variable on the **acme-companion** container:
 
 * `FILES_UID` - Set the user owning the files and folders managed by the container. The variable can be either a user name if this user exists inside the container or a user numeric ID. Default to `root` (user ID `0`).
 * `FILES_GID` - Set the group owning the files and folders managed by the container. The variable can be either a group name if this group exists inside the container or a group numeric ID. Default to the same value as `FILES_UID`.
@@ -118,4 +117,4 @@ For example, `FILES_UID=1000`, `FILES_PERMS=600` and `FOLDERS_PERMS=700` will re
 └── [lrwxrwxrwx 1000 1000]  domain.tld.key -> ./domain.tld/key.pem
 ```
 
-If you just want to make the most sensitive files (private keys and ACME account keys) root readable only, set the environment variable `FILES_PERMS` to `600` on your **letsencrypt-nginx-proxy-companion** container.
+If you just want to make the most sensitive files (private keys and ACME account keys) root readable only, set the environment variable `FILES_PERMS` to `600` on your **acme-companion** container.
