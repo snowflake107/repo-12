@@ -63,6 +63,8 @@ def flatten_schema(d, parent_key=None, sep='__', level=0, max_level=0):
                 elif list(v.values())[0][0]['type'] == 'object':
                     list(v.values())[0][0]['type'] = ['null', 'object']
                     items.append((new_key, list(v.values())[0][0]))
+                else:
+                    raise(f"Unknown schema property type for key '{k}': {json.dumps(v)}")
 
     key_func = lambda item: item[0]
     sorted_items = sorted(items, key=key_func)
