@@ -72,6 +72,8 @@ def flatten_schema(d, parent_key=None, sep='__', level=0, max_level=0):
                 elif list(v.values())[0][0]['type'] == 'boolean':
                     list(v.values())[0][0]['type'] = ['null', 'boolean']
                     items.append((new_key, list(v.values())[0][0]))
+                elif list(v.values())[0][0]['type'] == ['null', 'string']:
+                    items.append((new_key, list(v.values())[0][0]))
                 else:
                     raise ValueError(f"Unknown schema property type for key '{k}': {json.dumps(v)}")
 
