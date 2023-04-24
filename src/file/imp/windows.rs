@@ -6,12 +6,48 @@ use std::os::windows::io::{AsRawHandle, FromRawHandle, RawHandle};
 use std::path::Path;
 use std::{io, iter};
 
-use windows_sys::Win32::Foundation::{HANDLE, INVALID_HANDLE_VALUE};
-use windows_sys::Win32::Storage::FileSystem::{
-    MoveFileExW, ReOpenFile, SetFileAttributesW, FILE_ATTRIBUTE_NORMAL, FILE_ATTRIBUTE_TEMPORARY,
-    FILE_FLAG_DELETE_ON_CLOSE, FILE_GENERIC_READ, FILE_GENERIC_WRITE, FILE_SHARE_DELETE,
-    FILE_SHARE_READ, FILE_SHARE_WRITE, MOVEFILE_REPLACE_EXISTING,
-};
+#[allow(non_camel_case_types)]
+mod bindings {
+    pub const INVALID_HANDLE_VALUE: isize = -1;
+    pub type BOOL = i32;
+    pub type MOVE_FILE_FLAGS = u32;
+    pub const MOVEFILE_REPLACE_EXISTING: MOVE_FILE_FLAGS = 1;
+    pub type HANDLE = isize;
+
+    pub type FILE_SHARE_MODE = u32;
+    pub const FILE_SHARE_READ: FILE_SHARE_MODE = 1;
+    pub const FILE_SHARE_WRITE: FILE_SHARE_MODE = 2;
+    pub const FILE_SHARE_DELETE: FILE_SHARE_MODE = 4;
+
+    pub type FILE_FLAGS_AND_ATTRIBUTES = u32;
+    pub const FILE_ATTRIBUTE_NORMAL: FILE_FLAGS_AND_ATTRIBUTES = 128;
+    pub const FILE_ATTRIBUTE_TEMPORARY: FILE_FLAGS_AND_ATTRIBUTES = 256;
+    pub const FILE_FLAG_DELETE_ON_CLOSE: FILE_FLAGS_AND_ATTRIBUTES = 67108864;
+
+    pub const FILE_GENERIC_READ: u32 = 1179785;
+    pub const FILE_GENERIC_WRITE: u32 = 1179926;
+
+    #[link(name = "kernel32", kind = "raw-dylib")]
+    extern "system" {
+        pub fn MoveFileExW(
+            lpExistingFileName: *const u16,
+            lpNewFileName: *const u16,
+            dwFlags: MOVE_FILE_FLAGS,
+        ) -> BOOL;
+        pub fn ReOpenFile(
+            hOriginalFile: HANDLE,
+            dwDesiredAccess: u32,
+            dwShareMode: FILE_SHARE_MODE,
+            dwFlagsAndAttributes: FILE_FLAGS_AND_ATTRIBUTES,
+        ) -> HANDLE;
+        pub fn SetFileAttributesW(
+            lpFileName: *const u16,
+            dwFileAttributes: FILE_FLAGS_AND_ATTRIBUTES,
+        ) -> BOOL;
+    }
+}
+
+use bindings::*;
 
 use crate::util;
 
