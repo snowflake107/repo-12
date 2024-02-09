@@ -1,0 +1,91 @@
+name: KinD End-to-End
+
+on:
+  pull_request:
+    branches: [master]
+
+env:
+  NAME: grafana-operator
+  NAMESPACE: grafana-operator-system
+
+jobs:
+  docs_only_check:
+    name: Check for docs-only change
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      docs_only: ${{ steps.docs_only_check.outputs.docs_only }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: changed-files
+        name: Get changed files
+        uses: tj-actions/changed-files@90a06d6ba9543371ab4df8eeca0be07ca6054959 #v42.0.2
+        with:
+          files_ignore: |
+            **/*.md
+            **/*.html
+            hugo/**
+      - id: which_files
+        name: Which files was changed
+        run: |
+          echo "One or more files has changed."
+          echo "List all the files that have changed: ${{ steps.changed-files.outputs.all_changed_files }}"
+          echo "What is any changed ${{ steps.changed-files.outputs.any_changed }}"
+      - id: docs_only_check
+        if: steps.changed-files.outputs.any_changed != 'true'
+        name: Check for docs-only changes
+        run: echo "docs_only=true" >> $GITHUB_OUTPUT
+
+  end-to-end:
+    runs-on: ubuntu-latest
+    needs:
+      - docs_only_check
+    if: (needs.docs_only_check.outputs.docs_only != 'true')
+    env:
+      KUBECONFIG: /home/runner/.kube/kind-grafana-operator-e2e
+    steps:
+      - name: Clone repo and checkout
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: "go.mod"
+          cache: true
+
+      - uses: ko-build/setup-ko@v0.6
+        with:
+          version: v0.13.0
+
+      - name: Set up KinD
+        id: kind
+        run: |
+          kind --kubeconfig="${KUBECONFIG}" create cluster --image=kindest/node:v1.25.3 --config tests/e2e/kind.yaml
+
+      - name: Build and load (current arch)
+        env:
+          KO_DOCKER_REPO: ko.local/grafana/grafana-operator
+        run: |
+          ko build --sbom=none --bare
+          kind load docker-image "$KO_DOCKER_REPO"
+
+      - name: Run e2e
+        shell: bash
+        run: |
+          # install kuttl
+          make kuttl
+          # Run e2e
+          VERSION=latest make e2e
+
+      - name: Debug failure
+        if: failure()
+        run: |
+          kubectl version
+          kubectl -n $NAMESPACE get all
+          kubectl -n $NAMESPACE get grafana
+          kubectl get crd
+          POD=$(kubectl get pods -n $NAMESPACE -l control-plane=controller-manager --output=jsonpath={.items..metadata.name})
+          kubectl logs -n $NAMESPACE $POD -c manager
