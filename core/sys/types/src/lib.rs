@@ -13,7 +13,7 @@
 use serde::{Deserialize, Serialize};
 use serde_with::{serde_as, Bytes};
 
-include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
+include!("bindings.rs");
 
 /// This macro provides common byte-handling operations when the type being
 /// wrapped is a struct containing a single fixed-size array of bytes.

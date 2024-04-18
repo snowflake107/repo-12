@@ -18,7 +18,7 @@ use mc_sgx_core_sys_types::{
 // time_t normally comes from libc, however libc doesn't have definitions for
 // the sgx target so we explicitly define it here.
 pub type time_t = i64;
-include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
+include!("bindings.rs");
 
 impl Default for sgx_ql_qve_collateral_t {
     fn default() -> sgx_ql_qve_collateral_t {
