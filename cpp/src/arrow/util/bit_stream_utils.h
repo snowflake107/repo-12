@@ -277,6 +277,11 @@ inline void GetValue_(int num_bits, T* v, int max_bytes, const uint8_t* buffer,
 #pragma warning(push)
 #pragma warning(disable : 4800)
 #endif
+  if (ARROW_PREDICT_FALSE(*bit_offset >= 64)) {
+    auto msg = std::string("invalid bit offset: ") + std::to_string(*bit_offset);
+    msg += ", may be malformed num_bits: " + std::to_string(num_bits);
+    throw std::runtime_error(msg);
+  }
   *v = static_cast<T>(bit_util::TrailingBits(*buffered_values, *bit_offset + num_bits) >>
                       *bit_offset);
 #ifdef _MSC_VER
