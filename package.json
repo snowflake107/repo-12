@@ -78,7 +78,7 @@
     "@types/uuid": "^9.0.8",
     "@viz-js/viz": "^3.5.0",
     "algoliasearch": "^4.23.3",
-    "canvas-confetti": "^1.9.2",
+    "canvas-confetti": "^1.9.3",
     "cheerio": "^1.0.0-rc.12",
     "classnames": "^2.5.1",
     "dotenv": "^16.4.5",
