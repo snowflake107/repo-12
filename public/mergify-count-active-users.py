@@ -33,7 +33,7 @@ def get_api_and_repo_name_from_url(url):
     if parsed.netloc.lower() == "github.com":
         host = "https://api.github.com"
     else:
-        host = f"{parsed.netloc}/api/v3"
+        host = f"https://{parsed.netloc}/api/v3"
 
     return host, parsed.path.strip("/")
 
