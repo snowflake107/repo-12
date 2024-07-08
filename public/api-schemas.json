@@ -92,16 +92,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -161,16 +154,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -259,16 +245,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -340,16 +319,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -430,16 +402,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -506,16 +471,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -593,16 +551,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -663,16 +614,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -742,16 +686,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -925,16 +862,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -1263,16 +1193,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -1349,16 +1272,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -1435,16 +1351,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -1524,16 +1433,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -1778,16 +1680,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -1895,16 +1790,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -2019,16 +1907,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -2154,16 +2035,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -2340,16 +2214,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -2483,16 +2350,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -2637,16 +2497,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -2823,16 +2676,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -3009,16 +2855,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -3195,16 +3034,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -3381,16 +3213,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -3567,16 +3392,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -3744,16 +3562,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -3835,16 +3646,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -3922,16 +3726,9 @@
             "in": "path",
             "required": true,
             "schema": {
-              "anyOf": [
-                {
-                  "type": "string",
-                  "minLength": 1,
-                  "pattern": "^[\\w\\-\\.]+$"
-                },
-                {
-                  "type": "null"
-                }
-              ],
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[\\w\\-\\.]+$",
               "description": "The name of the repository",
               "title": "Repository"
             },
@@ -3964,6 +3761,62 @@
                     }
                   ],
                   "title": "Response Repository Partition Branch Repos  Owner   Repository  Partition  Partition Name  Branch  Branch Name  Get"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{owner}": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "List GitHub repositories with enabled produtcs",
+        "description": "List GitHub repositories with at least one product enabled",
+        "operationId": "list_github_repositories_and_products_products__owner__get",
+        "security": [
+          {
+            "ApplicationAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "owner",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40,
+              "pattern": "^[a-zA-Z0-9\\-]+$",
+              "description": "The owner of the repository",
+              "title": "Owner"
+            },
+            "description": "The owner of the repository"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitHubRepositoriesResponse"
                 }
               }
             }
@@ -7564,6 +7417,52 @@
         ],
         "title": "EventsResponse"
       },
+      "GitHubRepositoriesResponse": {
+        "properties": {
+          "repositories": {
+            "items": {
+              "$ref": "#/components/schemas/GitHubRepository"
+            },
+            "type": "array",
+            "title": "Repositories"
+          }
+        },
+        "type": "object",
+        "required": [
+          "repositories"
+        ],
+        "title": "GitHubRepositoriesResponse"
+      },
+      "GitHubRepository": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "products": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "ci_issues",
+                "merge_protections"
+              ]
+            },
+            "type": "array",
+            "title": "Products"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "products"
+        ],
+        "title": "GitHubRepository"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -9286,6 +9185,14 @@
     {
       "name": "eventlogs",
       "description": "Operations with event logs."
+    },
+    {
+      "name": "merge_protections",
+      "description": "Operations with merge protections."
+    },
+    {
+      "name": "products",
+      "description": "Operations with products."
     },
     {
       "name": "pull_requests",
