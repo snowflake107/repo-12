@@ -21,7 +21,6 @@ queue_rules:
   - name: hotfix
     <<: *DefaultQueueOptions
     queue_conditions:
-      - "check-success=Rule: Conventional Commit (post_check)"
       - or:
           # Author is engineering manager, we allow with one review
           - and:
@@ -45,7 +44,6 @@ queue_rules:
   - name: default
     <<: *DefaultQueueOptions
     queue_conditions:
-      - "check-success=Rule: Conventional Commit (post_check)"
       - and: *CheckRuns
       - "#approved-reviews-by>=2"
       - "#changes-requested-reviews-by=0"
@@ -61,7 +59,6 @@ queue_rules:
     merge_method: merge
     speculative_checks: 1
     queue_conditions:
-      - "check-success=Rule: Conventional Commit (post_check)"
       - and: *CheckRuns
       - "#commits=1"
       - or:
