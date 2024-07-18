@@ -35,7 +35,7 @@ import { FiType } from 'react-icons/fi';
 import { GoGitMerge, GoCodeReview } from 'react-icons/go';
 import { IoIosRemoveCircleOutline } from 'react-icons/io';
 import { LiaShareAltSolid } from 'react-icons/lia';
-import { MdMonitorHeart, MdScheduleSend } from 'react-icons/md';
+import { MdMonitorHeart } from 'react-icons/md';
 import {
 	SiSlack,
 	SiDatadog,
@@ -67,6 +67,11 @@ const navItems: NavItem[] = [
 	{ title: 'Home', path: '/', icon: FaHome },
 	{ title: 'Getting Started', path: '/getting-started', icon: FaCirclePlay },
 	{
+		title: 'Merge Protections',
+		path: '/merge-protections',
+		icon: FaUserShield,
+	},
+	{
 		title: 'Workflow Automation',
 		icon: BsGear,
 		path: '/workflow',
@@ -82,7 +87,6 @@ const navItems: NavItem[] = [
 				icon: BsLightbulb,
 				children: [
 					{ title: 'Automatic Merge', path: '/workflow/automerge', icon: GoGitMerge },
-					{ title: 'Scheduling Merges', path: '/workflow/schedule-merge', icon: MdScheduleSend },
 					{ title: 'Request Reviews', path: '/workflow/request-reviews', icon: GoCodeReview },
 					{
 						title: 'Delete Head Branches',
@@ -95,11 +99,6 @@ const navItems: NavItem[] = [
 						icon: IoIosRemoveCircleOutline,
 					},
 					{ title: 'Rebasing PRs', path: '/workflow/rebase', icon: TbGitBranch },
-					{
-						title: 'Custom Branch Protections',
-						path: '/workflow/custom-branch-protections',
-						icon: FaUserShield,
-					},
 				],
 			},
 			{

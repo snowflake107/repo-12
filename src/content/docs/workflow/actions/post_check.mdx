@@ -6,6 +6,11 @@ description: Create a check-run on a pull request.
 import ActionOptionsTable from '../../../../components/Tables/ActionOptionsTable';
 import Button from '../../../../components/Button.astro';
 
+:::caution
+  We advise to use [Mergify Merge Protections](/merge-protections)
+  instead of this action.
+:::
+
 The `post_check` action allows Mergify to create a check-run on a pull request.
 This can be useful in situations where you want to add a custom check to the
 status of a pull request based on Mergify's evaluation.
@@ -30,10 +35,3 @@ and also these additional variables:
 
 - `{{ check_conditions }}` the list of all conditions with a checkbox marked if
   the condition matches.
-
-## Examples
-
-<Button href="/workflow/custom-branch-protections/#leveraging-custom-checks" colorScheme='teal' size='lg'
-style={{marginLeft: 'auto', marginRight: 'auto', marginBottom: '2em', display: 'block'}}>
-  Read Custom Branch Protections Use Case
-</Button>
