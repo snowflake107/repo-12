@@ -16,7 +16,7 @@
     "@astrojs/mdx": "^3.1.2",
     "@astrojs/preact": "^3.5.0",
     "@astrojs/sitemap": "^3.1.6",
-    "@babel/core": "^7.24.7",
+    "@babel/core": "^7.24.9",
     "@types/hast": "^3.0.4",
     "@types/html-escaper": "^3.0.2",
     "@types/js-yaml": "^4.0.9",
