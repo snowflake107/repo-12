@@ -98,7 +98,7 @@
     "rehype-slug": "^6.0.0",
     "remark-excerpt": "^1.0.0-beta.1",
     "remark-gfm": "^4.0.0",
-    "remark-smartypants": "^3.0.1",
+    "remark-smartypants": "^3.0.2",
     "sass": "^1.77.6",
     "uuid": "^10.0.0",
     "viz.js": "^2.1.2",
