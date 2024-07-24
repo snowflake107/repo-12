@@ -7119,10 +7119,6 @@
       },
       "EventScheduledFreezeCreateMetadata": {
         "properties": {
-          "scheduled_freeze_id": {
-            "type": "integer",
-            "title": "Scheduled Freeze Id"
-          },
           "scheduled_freeze_attributes": {
             "$ref": "#/components/schemas/ScheduledFreezeEventLogAttributes"
           },
@@ -7137,7 +7133,6 @@
         },
         "type": "object",
         "required": [
-          "scheduled_freeze_id",
           "scheduled_freeze_attributes",
           "created_by",
           "created_at"
@@ -7212,10 +7207,6 @@
       },
       "EventScheduledFreezeDeleteMetadata": {
         "properties": {
-          "scheduled_freeze_id": {
-            "type": "integer",
-            "title": "Scheduled Freeze Id"
-          },
           "scheduled_freeze_attributes": {
             "$ref": "#/components/schemas/ScheduledFreezeEventLogAttributes"
           },
@@ -7234,7 +7225,6 @@
         },
         "type": "object",
         "required": [
-          "scheduled_freeze_id",
           "scheduled_freeze_attributes",
           "reason",
           "deleted_by",
@@ -7310,10 +7300,6 @@
       },
       "EventScheduledFreezeUpdateMetadata": {
         "properties": {
-          "scheduled_freeze_id": {
-            "type": "integer",
-            "title": "Scheduled Freeze Id"
-          },
           "scheduled_freeze_attributes_before": {
             "$ref": "#/components/schemas/ScheduledFreezeEventLogAttributes"
           },
@@ -7331,7 +7317,6 @@
         },
         "type": "object",
         "required": [
-          "scheduled_freeze_id",
           "scheduled_freeze_attributes_before",
           "scheduled_freeze_attributes_after",
           "updated_by",
