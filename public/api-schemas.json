@@ -3838,7 +3838,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/CiIssuesJunitResponse"
+                }
               }
             }
           },
@@ -4140,37 +4142,6 @@
             "type": "array",
             "maxItems": 5,
             "title": "Files"
-          },
-          "provider": {
-            "type": "string",
-            "enum": [
-              "none",
-              "github_action"
-            ],
-            "title": "Provider",
-            "default": "none"
-          },
-          "github_action_workflow_run_id": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Github Action Workflow Run Id"
-          },
-          "github_action_workflow_run_attempt": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "title": "Github Action Workflow Run Attempt"
           }
         },
         "type": "object",
@@ -4404,6 +4375,19 @@
           "groups"
         ],
         "title": "ChecksOutcomeResponse"
+      },
+      "CiIssuesJunitResponse": {
+        "properties": {
+          "gigid": {
+            "type": "string",
+            "title": "Gigid"
+          }
+        },
+        "type": "object",
+        "required": [
+          "gigid"
+        ],
+        "title": "CiIssuesJunitResponse"
       },
       "CiIssuesTokenResponse": {
         "properties": {
