@@ -85,7 +85,7 @@
     "framer-motion": "^11.3.17",
     "github-slugger": "^2.0.0",
     "jsdoc-api": "^8.1.1",
-    "minimatch": "^9.0.5",
+    "minimatch": "^10.0.1",
     "nanostores": "^0.10.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
