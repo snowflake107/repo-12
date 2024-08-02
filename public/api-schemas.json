@@ -4141,6 +4141,7 @@
             },
             "type": "array",
             "maxItems": 5,
+            "minItems": 1,
             "title": "Files"
           }
         },
