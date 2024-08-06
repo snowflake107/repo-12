@@ -4143,6 +4143,15 @@
             "maxItems": 5,
             "minItems": 1,
             "title": "Files"
+          },
+          "provider": {
+            "type": "string",
+            "enum": [
+              "none",
+              "github_action"
+            ],
+            "title": "Provider",
+            "default": "none"
           }
         },
         "type": "object",
