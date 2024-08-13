@@ -1,5 +1,5 @@
 ---
-const { title, description, path } = Astro.props;
+const { title, path } = Astro.props;
 ---
 
 <div class="container">
@@ -9,7 +9,9 @@ const { title, description, path } = Astro.props;
 			<span>{title}</span>
 		</h4>
 	</a>
-	{description && <p>{description}</p>}
+	<p>
+		<slot />
+	</p>
 </div>
 
 <style lang="scss">
