@@ -71,7 +71,7 @@
     "@fontsource/ibm-plex-mono": "^5.0.13",
     "@fontsource/poppins": "^5.0.14",
     "@fontsource/source-sans-pro": "^5.0.8",
-    "@nanostores/preact": "^0.5.1",
+    "@nanostores/preact": "^0.5.2",
     "@scalar/api-reference": "^1.24.69",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
