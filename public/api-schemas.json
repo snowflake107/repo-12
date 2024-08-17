@@ -1526,7 +1526,13 @@
                       "action.queue.change",
                       "scheduled_freeze.create",
                       "scheduled_freeze.update",
-                      "scheduled_freeze.delete"
+                      "scheduled_freeze.delete",
+                      "ci_issue.created",
+                      "ci_issue.linked",
+                      "ci_issue.resolved",
+                      "ci_issue.unresolved",
+                      "ci_issue.reopened",
+                      "ci_issue.merged"
                     ],
                     "type": "string"
                   }
@@ -4585,6 +4591,643 @@
         ],
         "title": "EventBackport"
       },
+      "EventCiIssueCreated": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "received_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Received At"
+          },
+          "trigger": {
+            "type": "string",
+            "title": "Trigger"
+          },
+          "repository": {
+            "type": "string",
+            "title": "Repository"
+          },
+          "pull_request": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pull Request"
+          },
+          "base_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Base Ref"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ci_issue.created"
+            ],
+            "const": "ci_issue.created",
+            "title": "Type"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/EventCiIssueCreatedMetadata"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "received_at",
+          "trigger",
+          "repository",
+          "pull_request",
+          "base_ref",
+          "type",
+          "metadata"
+        ],
+        "title": "EventCiIssueCreated"
+      },
+      "EventCiIssueCreatedMetadata": {
+        "properties": {
+          "ci_issue_id": {
+            "type": "integer",
+            "title": "Ci Issue Id"
+          },
+          "ci_issue_short_id": {
+            "type": "string",
+            "title": "Ci Issue Short Id"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Timestamp"
+          },
+          "job_name": {
+            "type": "string",
+            "title": "Job Name"
+          },
+          "job_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Job Url"
+          },
+          "job_completed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Job Completed At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ci_issue_id",
+          "ci_issue_short_id",
+          "timestamp",
+          "job_name",
+          "job_url",
+          "job_completed_at"
+        ],
+        "title": "EventCiIssueCreatedMetadata"
+      },
+      "EventCiIssueLinked": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "received_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Received At"
+          },
+          "trigger": {
+            "type": "string",
+            "title": "Trigger"
+          },
+          "repository": {
+            "type": "string",
+            "title": "Repository"
+          },
+          "pull_request": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pull Request"
+          },
+          "base_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Base Ref"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ci_issue.linked"
+            ],
+            "const": "ci_issue.linked",
+            "title": "Type"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/EventCiIssueLinkedMetadata"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "received_at",
+          "trigger",
+          "repository",
+          "pull_request",
+          "base_ref",
+          "type",
+          "metadata"
+        ],
+        "title": "EventCiIssueLinked"
+      },
+      "EventCiIssueLinkedMetadata": {
+        "properties": {
+          "ci_issue_id": {
+            "type": "integer",
+            "title": "Ci Issue Id"
+          },
+          "ci_issue_short_id": {
+            "type": "string",
+            "title": "Ci Issue Short Id"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Timestamp"
+          },
+          "job_name": {
+            "type": "string",
+            "title": "Job Name"
+          },
+          "job_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Job Url"
+          },
+          "job_completed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Job Completed At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ci_issue_id",
+          "ci_issue_short_id",
+          "timestamp",
+          "job_name",
+          "job_url",
+          "job_completed_at"
+        ],
+        "title": "EventCiIssueLinkedMetadata"
+      },
+      "EventCiIssueMerged": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "received_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Received At"
+          },
+          "trigger": {
+            "type": "string",
+            "title": "Trigger"
+          },
+          "repository": {
+            "type": "string",
+            "title": "Repository"
+          },
+          "pull_request": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pull Request"
+          },
+          "base_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Base Ref"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ci_issue.merged"
+            ],
+            "const": "ci_issue.merged",
+            "title": "Type"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/EventCiIssueMergedMetadata"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "received_at",
+          "trigger",
+          "repository",
+          "pull_request",
+          "base_ref",
+          "type",
+          "metadata"
+        ],
+        "title": "EventCiIssueMerged"
+      },
+      "EventCiIssueMergedMetadata": {
+        "properties": {
+          "ci_issue_id": {
+            "type": "integer",
+            "title": "Ci Issue Id"
+          },
+          "ci_issue_short_id": {
+            "type": "string",
+            "title": "Ci Issue Short Id"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Timestamp"
+          },
+          "merged_by": {
+            "$ref": "#/components/schemas/Actor"
+          },
+          "merged_with_ci_issue_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Merged With Ci Issue Ids"
+          },
+          "merged_with_ci_issue_short_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Merged With Ci Issue Short Ids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ci_issue_id",
+          "ci_issue_short_id",
+          "timestamp",
+          "merged_by",
+          "merged_with_ci_issue_ids",
+          "merged_with_ci_issue_short_ids"
+        ],
+        "title": "EventCiIssueMergedMetadata"
+      },
+      "EventCiIssueReopened": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "received_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Received At"
+          },
+          "trigger": {
+            "type": "string",
+            "title": "Trigger"
+          },
+          "repository": {
+            "type": "string",
+            "title": "Repository"
+          },
+          "pull_request": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pull Request"
+          },
+          "base_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Base Ref"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ci_issue.reopened"
+            ],
+            "const": "ci_issue.reopened",
+            "title": "Type"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/EventCiIssueReopenedMetadata"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "received_at",
+          "trigger",
+          "repository",
+          "pull_request",
+          "base_ref",
+          "type",
+          "metadata"
+        ],
+        "title": "EventCiIssueReopened"
+      },
+      "EventCiIssueReopenedMetadata": {
+        "properties": {
+          "ci_issue_id": {
+            "type": "integer",
+            "title": "Ci Issue Id"
+          },
+          "ci_issue_short_id": {
+            "type": "string",
+            "title": "Ci Issue Short Id"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Timestamp"
+          },
+          "job_name": {
+            "type": "string",
+            "title": "Job Name"
+          },
+          "job_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Job Url"
+          },
+          "job_completed_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Job Completed At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ci_issue_id",
+          "ci_issue_short_id",
+          "timestamp",
+          "job_name",
+          "job_url",
+          "job_completed_at"
+        ],
+        "title": "EventCiIssueReopenedMetadata"
+      },
+      "EventCiIssueResolved": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "received_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Received At"
+          },
+          "trigger": {
+            "type": "string",
+            "title": "Trigger"
+          },
+          "repository": {
+            "type": "string",
+            "title": "Repository"
+          },
+          "pull_request": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pull Request"
+          },
+          "base_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Base Ref"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ci_issue.resolved"
+            ],
+            "const": "ci_issue.resolved",
+            "title": "Type"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/EventCiIssueResolvedMetadata"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "received_at",
+          "trigger",
+          "repository",
+          "pull_request",
+          "base_ref",
+          "type",
+          "metadata"
+        ],
+        "title": "EventCiIssueResolved"
+      },
+      "EventCiIssueResolvedMetadata": {
+        "properties": {
+          "ci_issue_id": {
+            "type": "integer",
+            "title": "Ci Issue Id"
+          },
+          "ci_issue_short_id": {
+            "type": "string",
+            "title": "Ci Issue Short Id"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Timestamp"
+          },
+          "resolved_by": {
+            "$ref": "#/components/schemas/Actor"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ci_issue_id",
+          "ci_issue_short_id",
+          "timestamp",
+          "resolved_by"
+        ],
+        "title": "EventCiIssueResolvedMetadata"
+      },
+      "EventCiIssueUnresolved": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "received_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Received At"
+          },
+          "trigger": {
+            "type": "string",
+            "title": "Trigger"
+          },
+          "repository": {
+            "type": "string",
+            "title": "Repository"
+          },
+          "pull_request": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pull Request"
+          },
+          "base_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Base Ref"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ci_issue.unresolved"
+            ],
+            "const": "ci_issue.unresolved",
+            "title": "Type"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/EventCiIssueUnresolvedMetadata"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "received_at",
+          "trigger",
+          "repository",
+          "pull_request",
+          "base_ref",
+          "type",
+          "metadata"
+        ],
+        "title": "EventCiIssueUnresolved"
+      },
+      "EventCiIssueUnresolvedMetadata": {
+        "properties": {
+          "ci_issue_id": {
+            "type": "integer",
+            "title": "Ci Issue Id"
+          },
+          "ci_issue_short_id": {
+            "type": "string",
+            "title": "Ci Issue Short Id"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Timestamp"
+          },
+          "unresolved_by": {
+            "$ref": "#/components/schemas/Actor"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ci_issue_id",
+          "ci_issue_short_id",
+          "timestamp",
+          "unresolved_by"
+        ],
+        "title": "EventCiIssueUnresolvedMetadata"
+      },
       "EventClose": {
         "properties": {
           "id": {
@@ -7639,6 +8282,24 @@
                 },
                 {
                   "$ref": "#/components/schemas/EventScheduledFreezeDelete"
+                },
+                {
+                  "$ref": "#/components/schemas/EventCiIssueCreated"
+                },
+                {
+                  "$ref": "#/components/schemas/EventCiIssueLinked"
+                },
+                {
+                  "$ref": "#/components/schemas/EventCiIssueResolved"
+                },
+                {
+                  "$ref": "#/components/schemas/EventCiIssueUnresolved"
+                },
+                {
+                  "$ref": "#/components/schemas/EventCiIssueReopened"
+                },
+                {
+                  "$ref": "#/components/schemas/EventCiIssueMerged"
                 }
               ]
             },
