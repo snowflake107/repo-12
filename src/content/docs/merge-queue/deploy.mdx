@@ -55,10 +55,12 @@ transitioning gradually, ensuring minimal disruption to existing workflows.
    pull_request_rules:
      - name: notify on manual merge
        conditions:
-         - merged-by!=mergify[bot]
+         - merged
+         - merged-by != mergify[bot]
        actions:
          comment:
            # replace <your-username> by your GitHub login
+           # or use {{author}} if you want the PR author to be notified.
            message: Hey @<your-username>, this PR has been merged manually.
    ```
 
