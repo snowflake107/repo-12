@@ -1,0 +1,1889 @@
+{
+  "$defs": {
+    "ActionsModel": {
+      "additionalProperties": false,
+      "properties": {
+        "assign": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AssignActionModel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "backport": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/BackportActionModel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "close": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CloseActionModel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "comment": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CommentActionModel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "copy": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CopyActionModel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "delete_head_branch": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DeleteHeadBranchActionModel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "dismiss_reviews": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DismissReviewsActionModel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "edit": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/EditActionModel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "github_actions": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/GhaActionModel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "label": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LabelActionModel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "merge": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MergeActionModel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "post_check": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PostCheckActionModel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "queue": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/QueueActionModel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "rebase": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RebaseActionModel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "request_reviews": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RequestReviewsActionModel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "review": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReviewActionModel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "squash": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SquashActionModel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "update": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/UpdateActionModel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "ActionsModel",
+      "type": "object"
+    },
+    "AndCondition": {
+      "additionalProperties": false,
+      "properties": {
+        "and": {
+          "$ref": "#/$defs/ListOfRuleConditionsWithMinimalLength"
+        }
+      },
+      "required": [
+        "and"
+      ],
+      "title": "AndCondition",
+      "type": "object"
+    },
+    "AssignActionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "users": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10,
+          "title": "Users",
+          "type": "array"
+        },
+        "add_users": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10,
+          "title": "Add Users",
+          "type": "array"
+        },
+        "remove_users": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 40,
+          "title": "Remove Users",
+          "type": "array"
+        }
+      },
+      "title": "AssignActionModel",
+      "type": "object"
+    },
+    "BackportActionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "bot_account": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bot Account"
+        },
+        "branches": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 30,
+          "title": "Branches",
+          "type": "array"
+        },
+        "regexes": {
+          "items": {
+            "format": "regex",
+            "type": "string"
+          },
+          "maxItems": 30,
+          "title": "Regexes",
+          "type": "array"
+        },
+        "ignore_conflicts": {
+          "default": true,
+          "title": "Ignore Conflicts",
+          "type": "boolean"
+        },
+        "assignees": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10,
+          "title": "Assignees",
+          "type": "array"
+        },
+        "labels": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 30,
+          "title": "Labels",
+          "type": "array"
+        },
+        "label_conflicts": {
+          "default": "conflicts",
+          "title": "Label Conflicts",
+          "type": "string"
+        },
+        "title": {
+          "default": "{{ title }} (backport #{{ number }})",
+          "title": "Title",
+          "type": "string"
+        },
+        "body": {
+          "default": "{{ body }}<hr>This is an automatic backport of pull request #{{number}} done by [Mergify](https://mergify.com).\n",
+          "title": "Body",
+          "type": "string"
+        },
+        "report_mode": {
+          "default": [
+            "check"
+          ],
+          "items": {
+            "enum": [
+              "check",
+              "comment"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Report Mode",
+          "type": "array"
+        },
+        "merge_conflict_style": {
+          "default": "merge",
+          "enum": [
+            "merge",
+            "diff3"
+          ],
+          "title": "Merge Conflict Style",
+          "type": "string"
+        }
+      },
+      "title": "BackportActionModel",
+      "type": "object"
+    },
+    "CloseActionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "message": {
+          "default": "This pull request has been automatically closed by Mergify.",
+          "title": "Message",
+          "type": "string"
+        }
+      },
+      "title": "CloseActionModel",
+      "type": "object"
+    },
+    "CommandRestrictionsConditionsModel": {
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/AndCondition"
+          },
+          {
+            "$ref": "#/$defs/OrCondition"
+          },
+          {
+            "$ref": "#/$defs/NegationCondition"
+          },
+          {
+            "$ref": "#/$defs/RuleConditionModel"
+          }
+        ]
+      },
+      "maxItems": 500,
+      "title": "CommandRestrictionsConditionsModel",
+      "type": "array"
+    },
+    "CommandRestrictionsModel": {
+      "additionalProperties": false,
+      "properties": {
+        "conditions": {
+          "$ref": "#/$defs/CommandRestrictionsConditionsModel"
+        }
+      },
+      "title": "CommandRestrictionsModel",
+      "type": "object"
+    },
+    "CommandsRestrictionsRulesModel": {
+      "additionalProperties": false,
+      "properties": {
+        "backport": {
+          "$ref": "#/$defs/CommandRestrictionsModel"
+        },
+        "copy": {
+          "$ref": "#/$defs/CommandRestrictionsModel"
+        },
+        "dequeue": {
+          "$ref": "#/$defs/CommandRestrictionsModel"
+        },
+        "queue": {
+          "$ref": "#/$defs/CommandRestrictionsModel"
+        },
+        "rebase": {
+          "$ref": "#/$defs/CommandRestrictionsModel"
+        },
+        "refresh": {
+          "$ref": "#/$defs/CommandRestrictionsModel"
+        },
+        "requeue": {
+          "$ref": "#/$defs/CommandRestrictionsModel"
+        },
+        "squash": {
+          "$ref": "#/$defs/CommandRestrictionsModel"
+        },
+        "unqueue": {
+          "$ref": "#/$defs/CommandRestrictionsModel"
+        },
+        "update": {
+          "$ref": "#/$defs/CommandRestrictionsModel"
+        }
+      },
+      "title": "CommandsRestrictionsRulesModel",
+      "type": "object"
+    },
+    "CommentActionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "message": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Message"
+        },
+        "bot_account": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bot Account"
+        }
+      },
+      "title": "CommentActionModel",
+      "type": "object"
+    },
+    "CopyActionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "bot_account": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bot Account"
+        },
+        "branches": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 30,
+          "title": "Branches",
+          "type": "array"
+        },
+        "regexes": {
+          "items": {
+            "format": "regex",
+            "type": "string"
+          },
+          "maxItems": 30,
+          "title": "Regexes",
+          "type": "array"
+        },
+        "ignore_conflicts": {
+          "default": true,
+          "title": "Ignore Conflicts",
+          "type": "boolean"
+        },
+        "assignees": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10,
+          "title": "Assignees",
+          "type": "array"
+        },
+        "labels": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 30,
+          "title": "Labels",
+          "type": "array"
+        },
+        "label_conflicts": {
+          "default": "conflicts",
+          "title": "Label Conflicts",
+          "type": "string"
+        },
+        "title": {
+          "default": "{{ title }} (copy #{{ number }})",
+          "title": "Title",
+          "type": "string"
+        },
+        "body": {
+          "default": "{{ body }}<hr>This is an automatic copy of pull request #{{number}} done by [Mergify](https://mergify.com).\n",
+          "title": "Body",
+          "type": "string"
+        },
+        "report_mode": {
+          "default": [
+            "check"
+          ],
+          "items": {
+            "enum": [
+              "check",
+              "comment"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Report Mode",
+          "type": "array"
+        },
+        "merge_conflict_style": {
+          "default": "merge",
+          "enum": [
+            "merge",
+            "diff3"
+          ],
+          "title": "Merge Conflict Style",
+          "type": "string"
+        }
+      },
+      "title": "CopyActionModel",
+      "type": "object"
+    },
+    "DefaultsRulesModel": {
+      "additionalProperties": false,
+      "properties": {
+        "actions": {
+          "$ref": "#/$defs/ActionsModel"
+        }
+      },
+      "title": "DefaultsRulesModel",
+      "type": "object"
+    },
+    "DeleteHeadBranchActionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "force": {
+          "default": false,
+          "title": "Force",
+          "type": "boolean"
+        }
+      },
+      "title": "DeleteHeadBranchActionModel",
+      "type": "object"
+    },
+    "DisabledDict": {
+      "properties": {
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "reason"
+      ],
+      "title": "DisabledDict",
+      "type": "object"
+    },
+    "DismissReviewsActionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "approved": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 50,
+              "type": "array"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "const": "from_requested_reviewers",
+              "enum": [
+                "from_requested_reviewers"
+              ],
+              "type": "string"
+            }
+          ],
+          "default": true,
+          "title": "Approved"
+        },
+        "changes_requested": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 50,
+              "type": "array"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "const": "from_requested_reviewers",
+              "enum": [
+                "from_requested_reviewers"
+              ],
+              "type": "string"
+            }
+          ],
+          "default": true,
+          "title": "Changes Requested"
+        },
+        "message": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Message"
+        },
+        "when": {
+          "default": "synchronize",
+          "enum": [
+            "synchronize",
+            "always"
+          ],
+          "title": "When",
+          "type": "string"
+        }
+      },
+      "title": "DismissReviewsActionModel",
+      "type": "object"
+    },
+    "EditActionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "bot_account": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bot Account"
+        },
+        "draft": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Draft"
+        }
+      },
+      "title": "EditActionModel",
+      "type": "object"
+    },
+    "GhaActionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "workflow": {
+          "$ref": "#/$defs/GhaActionModelWorkflow"
+        }
+      },
+      "required": [
+        "workflow"
+      ],
+      "title": "GhaActionModel",
+      "type": "object"
+    },
+    "GhaActionModelDispatch": {
+      "additionalProperties": false,
+      "properties": {
+        "workflow": {
+          "title": "Workflow",
+          "type": "string"
+        },
+        "ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ref"
+        },
+        "inputs": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "maxProperties": 10,
+          "title": "Inputs",
+          "type": "object"
+        }
+      },
+      "required": [
+        "workflow"
+      ],
+      "title": "GhaActionModelDispatch",
+      "type": "object"
+    },
+    "GhaActionModelWorkflow": {
+      "additionalProperties": false,
+      "properties": {
+        "dispatch": {
+          "items": {
+            "$ref": "#/$defs/GhaActionModelDispatch"
+          },
+          "maxItems": 10,
+          "title": "Dispatch",
+          "type": "array"
+        }
+      },
+      "title": "GhaActionModelWorkflow",
+      "type": "object"
+    },
+    "LabelActionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "add": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 50,
+          "title": "Add",
+          "type": "array"
+        },
+        "remove": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 50,
+          "title": "Remove",
+          "type": "array"
+        },
+        "remove_all": {
+          "default": false,
+          "title": "Remove All",
+          "type": "boolean"
+        },
+        "toggle": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 50,
+          "title": "Toggle",
+          "type": "array"
+        }
+      },
+      "title": "LabelActionModel",
+      "type": "object"
+    },
+    "ListOfRuleConditionsWithMinimalLength": {
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/AndCondition"
+          },
+          {
+            "$ref": "#/$defs/OrCondition"
+          },
+          {
+            "$ref": "#/$defs/NegationCondition"
+          },
+          {
+            "$ref": "#/$defs/RuleConditionModel"
+          }
+        ]
+      },
+      "maxItems": 500,
+      "title": "ListOfRuleConditionsWithMinimalLength",
+      "type": "array"
+    },
+    "MergeActionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "anyOf": [
+            {
+              "enum": [
+                "merge",
+                "rebase",
+                "squash",
+                "fast-forward"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Method"
+        },
+        "merge_bot_account": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Merge Bot Account"
+        },
+        "commit_message_template": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Commit Message Template"
+        },
+        "allow_merging_configuration_change": {
+          "default": false,
+          "title": "Allow Merging Configuration Change",
+          "type": "boolean"
+        }
+      },
+      "title": "MergeActionModel",
+      "type": "object"
+    },
+    "MergeProtectionRuleConditionsModel": {
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/AndCondition"
+          },
+          {
+            "$ref": "#/$defs/OrCondition"
+          },
+          {
+            "$ref": "#/$defs/NegationCondition"
+          },
+          {
+            "$ref": "#/$defs/RuleConditionModel"
+          }
+        ]
+      },
+      "maxItems": 500,
+      "title": "MergeProtectionRuleConditionsModel",
+      "type": "array"
+    },
+    "MergeProtectionRuleModel": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "if": {
+          "$ref": "#/$defs/MergeProtectionRuleConditionsModel"
+        },
+        "success_conditions": {
+          "$ref": "#/$defs/MergeProtectionRuleConditionsModel"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        }
+      },
+      "required": [
+        "name",
+        "if",
+        "success_conditions"
+      ],
+      "title": "MergeProtectionRuleModel",
+      "type": "object"
+    },
+    "MergeProtectionRulesModel": {
+      "items": {
+        "$ref": "#/$defs/MergeProtectionRuleModel"
+      },
+      "maxItems": 100,
+      "title": "MergeProtectionRulesModel",
+      "type": "array"
+    },
+    "NegationCondition": {
+      "additionalProperties": false,
+      "properties": {
+        "not": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AndCondition"
+            },
+            {
+              "$ref": "#/$defs/OrCondition"
+            },
+            {
+              "$ref": "#/$defs/RuleConditionModel"
+            }
+          ],
+          "title": "Not"
+        }
+      },
+      "required": [
+        "not"
+      ],
+      "title": "NegationCondition",
+      "type": "object"
+    },
+    "OrCondition": {
+      "additionalProperties": false,
+      "properties": {
+        "or": {
+          "$ref": "#/$defs/ListOfRuleConditionsWithMinimalLength"
+        }
+      },
+      "required": [
+        "or"
+      ],
+      "title": "OrCondition",
+      "type": "object"
+    },
+    "PartitionRuleConditionsModel": {
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/AndCondition"
+          },
+          {
+            "$ref": "#/$defs/OrCondition"
+          },
+          {
+            "$ref": "#/$defs/NegationCondition"
+          },
+          {
+            "$ref": "#/$defs/RuleConditionModel"
+          }
+        ]
+      },
+      "maxItems": 500,
+      "title": "PartitionRuleConditionsModel",
+      "type": "array"
+    },
+    "PartitionRuleModel": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "conditions": {
+          "$ref": "#/$defs/PartitionRuleConditionsModel"
+        },
+        "fallback_partition": {
+          "default": false,
+          "title": "Fallback Partition",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "PartitionRuleModel",
+      "type": "object"
+    },
+    "PartitionRulesModel": {
+      "items": {
+        "$ref": "#/$defs/PartitionRuleModel"
+      },
+      "title": "PartitionRulesModel",
+      "type": "array"
+    },
+    "PostCheckActionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "default": "'{{ check_rule_name }}'{% if check_status == 'success' %} succeeded{% elif check_status == 'failure' %} failed{% endif %}",
+          "title": "Title",
+          "type": "string"
+        },
+        "summary": {
+          "default": "{{ check_conditions }}",
+          "title": "Summary",
+          "type": "string"
+        },
+        "success_conditions": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PostCheckRuleConditionsModel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "neutral_conditions": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PostCheckRuleConditionsModel"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "PostCheckActionModel",
+      "type": "object"
+    },
+    "PostCheckRuleConditionsModel": {
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/AndCondition"
+          },
+          {
+            "$ref": "#/$defs/OrCondition"
+          },
+          {
+            "$ref": "#/$defs/NegationCondition"
+          },
+          {
+            "$ref": "#/$defs/RuleConditionModel"
+          }
+        ]
+      },
+      "maxItems": 500,
+      "title": "PostCheckRuleConditionsModel",
+      "type": "array"
+    },
+    "PriorityRuleConditionsModel": {
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/AndCondition"
+          },
+          {
+            "$ref": "#/$defs/OrCondition"
+          },
+          {
+            "$ref": "#/$defs/NegationCondition"
+          },
+          {
+            "$ref": "#/$defs/RuleConditionModel"
+          }
+        ]
+      },
+      "maxItems": 500,
+      "title": "PriorityRuleConditionsModel",
+      "type": "array"
+    },
+    "PriorityRuleModel": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "conditions": {
+          "$ref": "#/$defs/PriorityRuleConditionsModel"
+        },
+        "priority": {
+          "anyOf": [
+            {
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "default": 2000,
+          "title": "Priority"
+        }
+      },
+      "required": [
+        "name",
+        "conditions"
+      ],
+      "title": "PriorityRuleModel",
+      "type": "object"
+    },
+    "PriorityRulesModel": {
+      "items": {
+        "$ref": "#/$defs/PriorityRuleModel"
+      },
+      "maxItems": 50,
+      "title": "PriorityRulesModel",
+      "type": "array"
+    },
+    "PullRequestRuleConditionsModel": {
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/AndCondition"
+          },
+          {
+            "$ref": "#/$defs/OrCondition"
+          },
+          {
+            "$ref": "#/$defs/NegationCondition"
+          },
+          {
+            "$ref": "#/$defs/RuleConditionModel"
+          }
+        ]
+      },
+      "maxItems": 500,
+      "title": "PullRequestRuleConditionsModel",
+      "type": "array"
+    },
+    "PullRequestRuleModel": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "disabled": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DisabledDict"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "hidden": {
+          "default": false,
+          "title": "Hidden",
+          "type": "boolean"
+        },
+        "conditions": {
+          "$ref": "#/$defs/PullRequestRuleConditionsModel"
+        },
+        "actions": {
+          "$ref": "#/$defs/ActionsModel"
+        }
+      },
+      "required": [
+        "name",
+        "conditions",
+        "actions"
+      ],
+      "title": "PullRequestRuleModel",
+      "type": "object"
+    },
+    "PullRequestRulesModel": {
+      "items": {
+        "$ref": "#/$defs/PullRequestRuleModel"
+      },
+      "maxItems": 200,
+      "title": "PullRequestRulesModel",
+      "type": "array"
+    },
+    "QueueActionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "merge_method": {
+          "anyOf": [
+            {
+              "enum": [
+                "merge",
+                "rebase",
+                "squash",
+                "fast-forward"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "configuration_deprecated_attribute": {
+            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `merge_method` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n    ",
+            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `merge_method` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> A brownout is planned on September 16th, 2024.\n> This option will be removed on October 21st, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n    "
+          },
+          "default": null,
+          "title": "Merge Method"
+        },
+        "merge_bot_account": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Merge Bot Account"
+        },
+        "update_bot_account": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "configuration_deprecated_attribute": {
+            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `update_bot_account` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n",
+            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `update_bot_account` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> A brownout is planned on September 16th, 2024.\n> This option will be removed on October 21st, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n"
+          },
+          "default": null,
+          "title": "Update Bot Account"
+        },
+        "update_method": {
+          "anyOf": [
+            {
+              "enum": [
+                "rebase",
+                "merge"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "configuration_deprecated_attribute": {
+            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `update_method` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n",
+            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `update_method` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> A brownout is planned on September 16th, 2024.\n> This option will be removed on October 21st, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n"
+          },
+          "default": null,
+          "title": "Update Method"
+        },
+        "commit_message_template": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "configuration_deprecated_attribute": {
+            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `commit_message_template` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n",
+            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `commit_message_template` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> A brownout is planned on September 16th, 2024.\n> This option will be removed on October 21st, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n"
+          },
+          "default": null,
+          "title": "Commit Message Template"
+        },
+        "allow_merging_configuration_change": {
+          "configuration_deprecated_attribute": {
+            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `allow_merging_configuration_change` attribute of the queue action in one or more `pull_request_rules`. It must be removed from the configuration.**\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n",
+            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `allow_merging_configuration_change` attribute of the queue action in one or more `pull_request_rules`. It must be removed from the configuration.**\n> A brownout is planned on September 16th, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n"
+          },
+          "default": false,
+          "title": "Allow Merging Configuration Change",
+          "type": "boolean"
+        },
+        "autosquash": {
+          "default": true,
+          "title": "Autosquash",
+          "type": "boolean"
+        }
+      },
+      "title": "QueueActionModel",
+      "type": "object"
+    },
+    "QueueRuleMergeConditionsModel": {
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/AndCondition"
+          },
+          {
+            "$ref": "#/$defs/OrCondition"
+          },
+          {
+            "$ref": "#/$defs/NegationCondition"
+          },
+          {
+            "$ref": "#/$defs/RuleConditionModel"
+          }
+        ]
+      },
+      "maxItems": 500,
+      "title": "QueueRuleMergeConditionsModel",
+      "type": "array"
+    },
+    "QueueRuleModel": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "priority_rules": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/PriorityRulesModel"
+            }
+          ],
+          "configuration_deprecated_attribute": {
+            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `priority_rules` attribute in the `queue_rules` section. The priority rules must now be set at the top level of the configuration file.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules\n\n\n    ",
+            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `priority_rules` attribute in the `queue_rules` section. The priority rules must now be set at the top level of the configuration file.**\n> A brownout is planned on October 26th, 2024.\n> This option will be removed on November 26th, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules\n\n\n    "
+          }
+        },
+        "queue_conditions": {
+          "$ref": "#/$defs/QueueRuleMergeConditionsModel"
+        },
+        "conditions": {
+          "$ref": "#/$defs/QueueRuleMergeConditionsModel"
+        },
+        "branch_protection_injection_mode": {
+          "default": "queue",
+          "enum": [
+            "queue",
+            "merge",
+            "none"
+          ],
+          "title": "Branch Protection Injection Mode",
+          "type": "string"
+        },
+        "speculative_checks": {
+          "default": 1,
+          "maximum": 128,
+          "minimum": 1,
+          "title": "Speculative Checks",
+          "type": "integer"
+        },
+        "batch_size": {
+          "default": 1,
+          "maximum": 128,
+          "minimum": 1,
+          "title": "Batch Size",
+          "type": "integer"
+        },
+        "batch_max_wait_time": {
+          "default": "PT30S",
+          "title": "Batch Max Wait Time",
+          "type": "string"
+        },
+        "allow_inplace_checks": {
+          "default": true,
+          "title": "Allow Inplace Checks",
+          "type": "boolean"
+        },
+        "disallow_checks_interruption_from_queues": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 50,
+          "title": "Disallow Checks Interruption From Queues",
+          "type": "array"
+        },
+        "checks_timeout": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Checks Timeout"
+        },
+        "draft_bot_account": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Draft Bot Account"
+        },
+        "queue_branch_merge_method": {
+          "anyOf": [
+            {
+              "const": "fast-forward",
+              "enum": [
+                "fast-forward"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Queue Branch Merge Method"
+        },
+        "queue_branch_prefix": {
+          "title": "Queue Branch Prefix",
+          "type": "string"
+        },
+        "allow_queue_branch_edit": {
+          "default": false,
+          "title": "Allow Queue Branch Edit",
+          "type": "boolean"
+        },
+        "batch_max_failure_resolution_attempts": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Batch Max Failure Resolution Attempts"
+        },
+        "merge_method": {
+          "anyOf": [
+            {
+              "enum": [
+                "merge",
+                "rebase",
+                "squash",
+                "fast-forward"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Merge Method"
+        },
+        "autosquash": {
+          "default": true,
+          "title": "Autosquash",
+          "type": "boolean"
+        },
+        "update_method": {
+          "anyOf": [
+            {
+              "enum": [
+                "rebase",
+                "merge"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Update Method"
+        },
+        "commit_message_template": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Commit Message Template"
+        },
+        "merge_bot_account": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Merge Bot Account"
+        },
+        "update_bot_account": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Update Bot Account"
+        },
+        "allow_checks_interruption": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Allow Checks Interruption"
+        },
+        "allow_inplace_speculative_checks": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Allow Inplace Speculative Checks"
+        },
+        "allow_speculative_checks_interruption": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Allow Speculative Checks Interruption"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "QueueRuleModel",
+      "type": "object"
+    },
+    "QueueRulesModel": {
+      "items": {
+        "$ref": "#/$defs/QueueRuleModel"
+      },
+      "maxItems": 50,
+      "title": "QueueRulesModel",
+      "type": "array"
+    },
+    "RebaseActionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "bot_account": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bot Account"
+        },
+        "autosquash": {
+          "default": true,
+          "title": "Autosquash",
+          "type": "boolean"
+        }
+      },
+      "title": "RebaseActionModel",
+      "type": "object"
+    },
+    "RequestReviewsActionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "bot_account": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bot Account"
+        },
+        "random_count": {
+          "anyOf": [
+            {
+              "maximum": 15,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Random Count"
+        },
+        "users": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 150,
+              "type": "array"
+            },
+            {
+              "additionalProperties": {
+                "default": 1,
+                "maximum": 65535,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "type": "object"
+            }
+          ],
+          "title": "Users"
+        },
+        "teams": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 150,
+              "type": "array"
+            },
+            {
+              "additionalProperties": {
+                "default": 1,
+                "maximum": 65535,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "type": "object"
+            }
+          ],
+          "title": "Teams"
+        },
+        "users_from_teams": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 150,
+              "type": "array"
+            },
+            {
+              "additionalProperties": {
+                "default": 1,
+                "maximum": 65535,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "type": "object"
+            }
+          ],
+          "title": "Users From Teams"
+        }
+      },
+      "title": "RequestReviewsActionModel",
+      "type": "object"
+    },
+    "ReviewActionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "default": "APPROVE",
+          "enum": [
+            "APPROVE",
+            "REQUEST_CHANGES",
+            "COMMENT"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "message": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Message"
+        },
+        "bot_account": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bot Account"
+        }
+      },
+      "title": "ReviewActionModel",
+      "type": "object"
+    },
+    "RuleConditionModel": {
+      "description": "Model defining a single rule condition 'leaf of a condition tree'",
+      "title": "RuleConditionModel",
+      "type": "string"
+    },
+    "SquashActionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "bot_account": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bot Account"
+        },
+        "commit_message": {
+          "default": "all-commits",
+          "enum": [
+            "all-commits",
+            "first-commit",
+            "title+body"
+          ],
+          "title": "Commit Message",
+          "type": "string"
+        }
+      },
+      "title": "SquashActionModel",
+      "type": "object"
+    },
+    "UpdateActionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "bot_account": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bot Account"
+        }
+      },
+      "title": "UpdateActionModel",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "shared": {
+      "anyOf": [
+        {
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Shared"
+    },
+    "extends": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Extends"
+    },
+    "defaults": {
+      "$ref": "#/$defs/DefaultsRulesModel"
+    },
+    "commands_restrictions": {
+      "$ref": "#/$defs/CommandsRestrictionsRulesModel"
+    },
+    "pull_request_rules": {
+      "$ref": "#/$defs/PullRequestRulesModel"
+    },
+    "queue_rules": {
+      "$ref": "#/$defs/QueueRulesModel"
+    },
+    "partition_rules": {
+      "$ref": "#/$defs/PartitionRulesModel"
+    },
+    "merge_protections": {
+      "$ref": "#/$defs/MergeProtectionRulesModel"
+    },
+    "priority_rules": {
+      "$ref": "#/$defs/PriorityRulesModel"
+    }
+  },
+  "title": "MergifyConfigModel",
+  "type": "object"
+}
