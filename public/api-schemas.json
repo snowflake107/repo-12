@@ -10109,6 +10109,10 @@
       "description": "Operations with queues."
     },
     {
+      "name": "repository_rulesets",
+      "description": "Operation with repository rulesets."
+    },
+    {
       "name": "scheduled_freeze",
       "description": "Operations with scheduled freezes."
     },
