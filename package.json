@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@actions/core": "^1.10.1",
-    "@astrojs/mdx": "^3.1.4",
+    "@astrojs/mdx": "^3.1.5",
     "@astrojs/preact": "^3.5.2",
     "@astrojs/sitemap": "^3.1.6",
     "@babel/core": "^7.24.9",
