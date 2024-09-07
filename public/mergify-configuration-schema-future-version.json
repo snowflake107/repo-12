@@ -557,6 +557,17 @@
       "properties": {
         "actions": {
           "$ref": "#/$defs/ActionsModel"
+        },
+        "queue_rule": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/QueueRuleModelForDefaults"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         }
       },
       "title": "DefaultsRulesModel",
@@ -1371,10 +1382,251 @@
     "QueueRuleModel": {
       "additionalProperties": false,
       "properties": {
+        "priority_rules": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/PriorityRulesModel"
+            }
+          ],
+          "configuration_deprecated_attribute": {
+            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `priority_rules` attribute in the `queue_rules` section. The priority rules must now be set at the top level of the configuration file.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules\n\n\n    ",
+            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `priority_rules` attribute in the `queue_rules` section. The priority rules must now be set at the top level of the configuration file.**\n> A brownout is planned on October 26th, 2024.\n> This option will be removed on November 26th, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules\n\n\n    "
+          }
+        },
+        "queue_conditions": {
+          "$ref": "#/$defs/QueueRuleMergeConditionsModel"
+        },
+        "conditions": {
+          "$ref": "#/$defs/QueueRuleMergeConditionsModel"
+        },
+        "branch_protection_injection_mode": {
+          "default": "queue",
+          "enum": [
+            "queue",
+            "merge",
+            "none"
+          ],
+          "title": "Branch Protection Injection Mode",
+          "type": "string"
+        },
+        "speculative_checks": {
+          "default": 1,
+          "maximum": 128,
+          "minimum": 1,
+          "title": "Speculative Checks",
+          "type": "integer"
+        },
+        "batch_size": {
+          "default": 1,
+          "maximum": 128,
+          "minimum": 1,
+          "title": "Batch Size",
+          "type": "integer"
+        },
+        "batch_max_wait_time": {
+          "default": "PT30S",
+          "title": "Batch Max Wait Time",
+          "type": "string"
+        },
+        "allow_inplace_checks": {
+          "default": true,
+          "title": "Allow Inplace Checks",
+          "type": "boolean"
+        },
+        "disallow_checks_interruption_from_queues": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 50,
+          "title": "Disallow Checks Interruption From Queues",
+          "type": "array"
+        },
+        "checks_timeout": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Checks Timeout"
+        },
+        "draft_bot_account": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Draft Bot Account"
+        },
+        "queue_branch_merge_method": {
+          "anyOf": [
+            {
+              "const": "fast-forward",
+              "enum": [
+                "fast-forward"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Queue Branch Merge Method"
+        },
+        "queue_branch_prefix": {
+          "title": "Queue Branch Prefix",
+          "type": "string"
+        },
+        "allow_queue_branch_edit": {
+          "default": false,
+          "title": "Allow Queue Branch Edit",
+          "type": "boolean"
+        },
+        "batch_max_failure_resolution_attempts": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Batch Max Failure Resolution Attempts"
+        },
+        "merge_method": {
+          "anyOf": [
+            {
+              "enum": [
+                "merge",
+                "rebase",
+                "squash",
+                "fast-forward"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Merge Method"
+        },
+        "autosquash": {
+          "default": true,
+          "title": "Autosquash",
+          "type": "boolean"
+        },
+        "update_method": {
+          "anyOf": [
+            {
+              "enum": [
+                "rebase",
+                "merge"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Update Method"
+        },
+        "commit_message_template": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Commit Message Template"
+        },
+        "merge_bot_account": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Merge Bot Account"
+        },
+        "update_bot_account": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Update Bot Account"
+        },
+        "allow_checks_interruption": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Allow Checks Interruption"
+        },
+        "allow_inplace_speculative_checks": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Allow Inplace Speculative Checks"
+        },
+        "allow_speculative_checks_interruption": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Allow Speculative Checks Interruption"
+        },
         "name": {
           "title": "Name",
           "type": "string"
-        },
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "QueueRuleModel",
+      "type": "object"
+    },
+    "QueueRuleModelForDefaults": {
+      "additionalProperties": false,
+      "properties": {
         "priority_rules": {
           "allOf": [
             {
@@ -1607,10 +1859,7 @@
           "title": "Allow Speculative Checks Interruption"
         }
       },
-      "required": [
-        "name"
-      ],
-      "title": "QueueRuleModel",
+      "title": "QueueRuleModelForDefaults",
       "type": "object"
     },
     "QueueRulesModel": {
