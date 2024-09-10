@@ -878,7 +878,7 @@
           "title": "Commit Message Template"
         },
         "allow_merging_configuration_change": {
-          "default": false,
+          "default": true,
           "title": "Allow Merging Configuration Change",
           "type": "boolean"
         }
@@ -1345,7 +1345,7 @@
             "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `allow_merging_configuration_change` attribute of the queue action in one or more `pull_request_rules`. It must be removed from the configuration.**\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n",
             "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `allow_merging_configuration_change` attribute of the queue action in one or more `pull_request_rules`. It must be removed from the configuration.**\n> A brownout is planned on September 16th, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n"
           },
-          "default": false,
+          "default": true,
           "title": "Allow Merging Configuration Change",
           "type": "boolean"
         },
