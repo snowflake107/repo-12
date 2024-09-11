@@ -8458,7 +8458,9 @@
               "type": "string",
               "enum": [
                 "ci_issues",
-                "merge_protections"
+                "merge_protections",
+                "workflow_automation",
+                "merge_queue"
               ]
             },
             "type": "array",
