@@ -223,7 +223,7 @@
       "properties": {
         "users": {
           "items": {
-            "type": "string"
+            "$ref": "#/$defs/Template"
           },
           "maxItems": 10,
           "title": "Users",
@@ -231,7 +231,7 @@
         },
         "add_users": {
           "items": {
-            "type": "string"
+            "$ref": "#/$defs/Template"
           },
           "maxItems": 10,
           "title": "Add Users",
@@ -239,7 +239,7 @@
         },
         "remove_users": {
           "items": {
-            "type": "string"
+            "$ref": "#/$defs/Template"
           },
           "maxItems": 40,
           "title": "Remove Users",
@@ -288,7 +288,7 @@
         },
         "assignees": {
           "items": {
-            "type": "string"
+            "$ref": "#/$defs/Template"
           },
           "maxItems": 10,
           "title": "Assignees",
@@ -349,9 +349,13 @@
       "additionalProperties": false,
       "properties": {
         "message": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Template"
+            }
+          ],
           "default": "This pull request has been automatically closed by Mergify.",
-          "title": "Message",
-          "type": "string"
+          "title": "Message"
         }
       },
       "title": "CloseActionModel",
@@ -431,7 +435,7 @@
         "message": {
           "anyOf": [
             {
-              "type": "string"
+              "$ref": "#/$defs/Template"
             },
             {
               "type": "null"
@@ -495,7 +499,7 @@
         },
         "assignees": {
           "items": {
-            "type": "string"
+            "$ref": "#/$defs/Template"
           },
           "maxItems": 10,
           "title": "Assignees",
@@ -650,7 +654,7 @@
         "message": {
           "anyOf": [
             {
-              "type": "string"
+              "$ref": "#/$defs/Template"
             },
             {
               "type": "null"
@@ -745,7 +749,7 @@
                 "type": "boolean"
               },
               {
-                "type": "string"
+                "$ref": "#/$defs/Template"
               }
             ]
           },
@@ -868,7 +872,7 @@
         "commit_message_template": {
           "anyOf": [
             {
-              "type": "string"
+              "$ref": "#/$defs/Template"
             },
             {
               "type": "null"
@@ -948,6 +952,58 @@
       "maxItems": 100,
       "title": "MergeProtectionRulesModel",
       "type": "array"
+    },
+    "MergifyConfigModel": {
+      "properties": {
+        "shared": {
+          "anyOf": [
+            {
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Shared"
+        },
+        "extends": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Extends"
+        },
+        "defaults": {
+          "$ref": "#/$defs/DefaultsRulesModel"
+        },
+        "commands_restrictions": {
+          "$ref": "#/$defs/CommandsRestrictionsRulesModel"
+        },
+        "pull_request_rules": {
+          "$ref": "#/$defs/PullRequestRulesModel"
+        },
+        "queue_rules": {
+          "$ref": "#/$defs/QueueRulesModel"
+        },
+        "partition_rules": {
+          "$ref": "#/$defs/PartitionRulesModel"
+        },
+        "merge_protections": {
+          "$ref": "#/$defs/MergeProtectionRulesModel"
+        },
+        "priority_rules": {
+          "$ref": "#/$defs/PriorityRulesModel"
+        }
+      },
+      "title": "MergifyConfigModel",
+      "type": "object"
     },
     "NegationCondition": {
       "additionalProperties": false,
@@ -1327,7 +1383,7 @@
         "commit_message_template": {
           "anyOf": [
             {
-              "type": "string"
+              "$ref": "#/$defs/Template"
             },
             {
               "type": "null"
@@ -1544,7 +1600,7 @@
         "commit_message_template": {
           "anyOf": [
             {
-              "type": "string"
+              "$ref": "#/$defs/Template"
             },
             {
               "type": "null"
@@ -1765,7 +1821,7 @@
         "commit_message_template": {
           "anyOf": [
             {
-              "type": "string"
+              "$ref": "#/$defs/Template"
             },
             {
               "type": "null"
@@ -1958,7 +2014,7 @@
         "message": {
           "anyOf": [
             {
-              "type": "string"
+              "$ref": "#/$defs/Template"
             },
             {
               "type": "null"
@@ -2017,6 +2073,12 @@
       "title": "SquashActionModel",
       "type": "object"
     },
+    "Template": {
+      "description": "A string template using the Jinja2 syntax.",
+      "properties": {},
+      "title": "Template",
+      "type": "string"
+    },
     "UpdateActionModel": {
       "additionalProperties": false,
       "properties": {
@@ -2036,55 +2098,5 @@
       "title": "UpdateActionModel",
       "type": "object"
     }
-  },
-  "properties": {
-    "shared": {
-      "anyOf": [
-        {
-          "type": "object"
-        },
-        {
-          "type": "null"
-        }
-      ],
-      "default": null,
-      "title": "Shared"
-    },
-    "extends": {
-      "anyOf": [
-        {
-          "minLength": 1,
-          "type": "string"
-        },
-        {
-          "type": "null"
-        }
-      ],
-      "default": null,
-      "title": "Extends"
-    },
-    "defaults": {
-      "$ref": "#/$defs/DefaultsRulesModel"
-    },
-    "commands_restrictions": {
-      "$ref": "#/$defs/CommandsRestrictionsRulesModel"
-    },
-    "pull_request_rules": {
-      "$ref": "#/$defs/PullRequestRulesModel"
-    },
-    "queue_rules": {
-      "$ref": "#/$defs/QueueRulesModel"
-    },
-    "partition_rules": {
-      "$ref": "#/$defs/PartitionRulesModel"
-    },
-    "merge_protections": {
-      "$ref": "#/$defs/MergeProtectionRulesModel"
-    },
-    "priority_rules": {
-      "$ref": "#/$defs/PriorityRulesModel"
-    }
-  },
-  "title": "MergifyConfigModel",
-  "type": "object"
+  }
 }
