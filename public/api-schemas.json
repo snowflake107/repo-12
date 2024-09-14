@@ -4032,6 +4032,76 @@
           }
         }
       }
+    },
+    "/integrations/{owner}/configuration/datadog": {
+      "get": {
+        "tags": [
+          "integrations"
+        ],
+        "summary": "Get the Datadog integration configuration",
+        "description": "Get the list of monitored repositories and their monitored branches",
+        "operationId": "get_datadog_configuration_integrations__owner__configuration_datadog_get",
+        "security": [
+          {
+            "ApplicationAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "owner",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40,
+              "pattern": "^[a-zA-Z0-9\\-]+$",
+              "description": "The owner of the repository",
+              "title": "Owner"
+            },
+            "description": "The owner of the repository"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DatadogConfigurationResponse"
+                },
+                "example": {
+                  "monitored_repositories": [
+                    {
+                      "id": 123,
+                      "name": "some-repo",
+                      "monitored_branches": [
+                        "main"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Datadog integration not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -4436,6 +4506,22 @@
           "forward"
         ],
         "title": "Cursor"
+      },
+      "DatadogConfigurationResponse": {
+        "properties": {
+          "monitored_repositories": {
+            "items": {
+              "$ref": "#/components/schemas/MonitoredRepositoryResponse"
+            },
+            "type": "array",
+            "title": "Monitored Repositories"
+          }
+        },
+        "type": "object",
+        "required": [
+          "monitored_repositories"
+        ],
+        "title": "DatadogConfigurationResponse"
       },
       "EventAssign": {
         "properties": {
@@ -8611,6 +8697,32 @@
         ],
         "title": "MergedInInterval"
       },
+      "MonitoredRepositoryResponse": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "monitored_branches": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Monitored Branches"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "monitored_branches"
+        ],
+        "title": "MonitoredRepositoryResponse"
+      },
       "Partition": {
         "properties": {
           "pull_requests": {
@@ -10201,6 +10313,10 @@
     {
       "name": "eventlogs",
       "description": "Operations with event logs."
+    },
+    {
+      "name": "integrations",
+      "description": "Operation with integrations."
     },
     {
       "name": "merge_protections",
