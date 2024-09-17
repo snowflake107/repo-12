@@ -456,6 +456,7 @@
             }
           ],
           "default": null,
+          "description": "The message to write as a comment.",
           "title": "Message"
         },
         "bot_account": {
@@ -468,6 +469,7 @@
             }
           ],
           "default": null,
+          "description": "Mergify can impersonate a GitHub user to comment a pull request. If no `bot_account` is set, Mergify will comment the pull request itself.",
           "title": "Bot Account"
         }
       },
@@ -604,6 +606,7 @@
       "properties": {
         "force": {
           "default": false,
+          "description": "If set to `true`, the branch will be deleted even if another pull request depends on the head branch. GitHub will therefore close the dependent pull requests.",
           "title": "Force",
           "type": "boolean"
         }
@@ -648,6 +651,7 @@
             }
           ],
           "default": true,
+          "description": "If set to `true`, all the approving reviews will be removed when the pull request is updated. If set to `false`, nothing will be done. If set to a list, each item should be the GitHub login of a user whose review will be removed. If set to `from_requested_reviewers`, the list of requested reviewers will be used to get whose review will be removed.",
           "title": "Approved"
         },
         "changes_requested": {
@@ -671,6 +675,7 @@
             }
           ],
           "default": true,
+          "description": "If set to `true`, all the reviews requesting changes will be removed when the pull request is updated. If set to false, nothing will be done. If set to a list, each item should be the GitHub login of a user whose review will be removed. If set to `from_requested_reviewers`, the list of requested reviewers will be used to get whose review will be removed.",
           "title": "Changes Requested"
         },
         "message": {
@@ -683,10 +688,12 @@
             }
           ],
           "default": null,
+          "description": "Message to use when dismissing reviews.",
           "title": "Message"
         },
         "when": {
           "default": "synchronize",
+          "description": "If set to `synchronize`, the action will run only if the pull request commits changed. Otherwise, it will run each time the rule matches.",
           "enum": [
             "synchronize",
             "always"
@@ -748,6 +755,7 @@
       "description": "GitHub Actions workflow dispatch",
       "properties": {
         "workflow": {
+          "description": "The name of the .yaml GitHub Workflow file with its extension.",
           "title": "Workflow",
           "type": "string"
         },
@@ -761,6 +769,7 @@
             }
           ],
           "default": null,
+          "description": "The reference to use when triggering the job. If none is passed, the default repository branch is used.",
           "title": "Ref"
         },
         "inputs": {
@@ -777,6 +786,7 @@
               }
             ]
           },
+          "description": "The inputs passed to your workflow execution if any. Values can be either a template, a number or a Boolean.",
           "maxProperties": 10,
           "title": "Inputs",
           "type": "object"
@@ -785,7 +795,7 @@
       "required": [
         "workflow"
       ],
-      "title": "GhaActionModelDispatch",
+      "title": "Workflow Action Dispatch",
       "type": "object"
     },
     "GhaActionModelWorkflow": {
@@ -793,6 +803,7 @@
       "description": "GitHub Actions workflow action",
       "properties": {
         "dispatch": {
+          "description": "The list of workflows to dispatch via the action.",
           "items": {
             "$ref": "#/$defs/GhaActionModelDispatch"
           },
@@ -801,7 +812,7 @@
           "type": "array"
         }
       },
-      "title": "GhaActionModelWorkflow",
+      "title": "Workflow Action",
       "type": "object"
     },
     "LabelActionModel": {
