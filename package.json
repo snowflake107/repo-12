@@ -27,7 +27,7 @@
     "@typescript-eslint/parser": "^6.21.0",
     "astro": "^4.15.6",
     "astro-auto-import": "^0.4.2",
-    "astro-eslint-parser": "^1.0.1",
+    "astro-eslint-parser": "^1.0.3",
     "astro-expressive-code": "^0.36.1",
     "astro-og-canvas": "^0.5.3",
     "canvaskit-wasm": "^0.39.1",
