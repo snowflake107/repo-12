@@ -856,6 +856,27 @@
       "title": "LabelActionModel",
       "type": "object"
     },
+    "ListOfRuleConditions": {
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/AndCondition"
+          },
+          {
+            "$ref": "#/$defs/OrCondition"
+          },
+          {
+            "$ref": "#/$defs/NegationCondition"
+          },
+          {
+            "$ref": "#/$defs/RuleConditionModel"
+          }
+        ]
+      },
+      "maxItems": 500,
+      "title": "ListOfRuleConditions",
+      "type": "array"
+    },
     "ListOfRuleConditionsWithMinimalLength": {
       "items": {
         "anyOf": [
@@ -896,6 +917,7 @@
             }
           ],
           "default": null,
+          "description": "Merge method to use. If no value is set, Mergify uses the first authorized method available in the repository configuration.",
           "title": "Method"
         },
         "merge_bot_account": {
@@ -908,6 +930,7 @@
             }
           ],
           "default": null,
+          "description": "Mergify can impersonate a GitHub user to merge pull requests. If no `merge_bot_account` is set, Mergify merges the pull request itself. The user account **must** have already been logged in Mergify dashboard once and have **write** or **maintain** permission.",
           "title": "Merge Bot Account"
         },
         "commit_message_template": {
@@ -920,10 +943,13 @@
             }
           ],
           "default": null,
+          "description": "Template to use as the commit message when using the merge or squash merge method.",
           "title": "Commit Message Template"
         },
         "allow_merging_configuration_change": {
           "default": true,
+          "deprecated": true,
+          "description": "Allow merging the Mergify configuration file. *This option does not do anything and is only present for backward compatibility.*",
           "title": "Allow Merging Configuration Change",
           "type": "boolean"
         }
@@ -1143,6 +1169,7 @@
             }
           ],
           "default": "'{{ check_rule_name }}'{% if check_status == 'success' %} succeeded{% elif check_status == 'failure' %} failed{% endif %}",
+          "description": "The title of the check.",
           "title": "Title"
         },
         "summary": {
@@ -1152,54 +1179,36 @@
             }
           ],
           "default": "{{ check_conditions }}",
+          "description": "The summary of the check.",
           "title": "Summary"
         },
         "success_conditions": {
           "anyOf": [
             {
-              "$ref": "#/$defs/PostCheckRuleConditionsModel"
+              "$ref": "#/$defs/ListOfRuleConditions"
             },
             {
               "type": "null"
             }
           ],
-          "default": null
+          "default": null,
+          "description": "List of conditions to match to mark the pull request check as succeeded, otherwise, it will be marked as failing. If unset, the conditions from the rule that triggers this action are used."
         },
         "neutral_conditions": {
           "anyOf": [
             {
-              "$ref": "#/$defs/PostCheckRuleConditionsModel"
+              "$ref": "#/$defs/ListOfRuleConditions"
             },
             {
               "type": "null"
             }
           ],
-          "default": null
+          "default": null,
+          "description": "List of conditions to match to mark the pull request check as neutral, otherwise, it will be marked as failing."
         }
       },
       "title": "PostCheckActionModel",
       "type": "object"
-    },
-    "PostCheckRuleConditionsModel": {
-      "items": {
-        "anyOf": [
-          {
-            "$ref": "#/$defs/AndCondition"
-          },
-          {
-            "$ref": "#/$defs/OrCondition"
-          },
-          {
-            "$ref": "#/$defs/NegationCondition"
-          },
-          {
-            "$ref": "#/$defs/RuleConditionModel"
-          }
-        ]
-      },
-      "maxItems": 500,
-      "title": "PostCheckRuleConditionsModel",
-      "type": "array"
     },
     "PriorityRuleConditionsModel": {
       "items": {
@@ -1380,8 +1389,8 @@
             }
           ],
           "configuration_deprecated_attribute": {
-            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `merge_method` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n    ",
-            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `merge_method` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> A brownout is planned on September 16th, 2024.\n> This option will be removed on October 21st, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n    "
+            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `merge_method` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules",
+            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `merge_method` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> A brownout is planned on September 16th, 2024.\n> This option will be removed on October 21st, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules"
           },
           "default": null,
           "title": "Merge Method"
@@ -1408,8 +1417,8 @@
             }
           ],
           "configuration_deprecated_attribute": {
-            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `update_bot_account` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n",
-            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `update_bot_account` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> A brownout is planned on September 16th, 2024.\n> This option will be removed on October 21st, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n"
+            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `update_bot_account` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules",
+            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `update_bot_account` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> A brownout is planned on September 16th, 2024.\n> This option will be removed on October 21st, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules"
           },
           "default": null,
           "title": "Update Bot Account"
@@ -1428,8 +1437,8 @@
             }
           ],
           "configuration_deprecated_attribute": {
-            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `update_method` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n",
-            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `update_method` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> A brownout is planned on September 16th, 2024.\n> This option will be removed on October 21st, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n"
+            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `update_method` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules",
+            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `update_method` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> A brownout is planned on September 16th, 2024.\n> This option will be removed on October 21st, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules"
           },
           "default": null,
           "title": "Update Method"
@@ -1444,16 +1453,16 @@
             }
           ],
           "configuration_deprecated_attribute": {
-            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `commit_message_template` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n",
-            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `commit_message_template` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> A brownout is planned on September 16th, 2024.\n> This option will be removed on October 21st, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n"
+            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `commit_message_template` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules",
+            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `commit_message_template` attribute of the queue action in one or more `pull_request_rules`. It must now be used under the `queue_rules` configuration.**\n> A brownout is planned on September 16th, 2024.\n> This option will be removed on October 21st, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules"
           },
           "default": null,
           "title": "Commit Message Template"
         },
         "allow_merging_configuration_change": {
           "configuration_deprecated_attribute": {
-            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `allow_merging_configuration_change` attribute of the queue action in one or more `pull_request_rules`. It must be removed from the configuration.**\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n",
-            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `allow_merging_configuration_change` attribute of the queue action in one or more `pull_request_rules`. It must be removed from the configuration.**\n> A brownout is planned on September 16th, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules\n\n\n"
+            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `allow_merging_configuration_change` attribute of the queue action in one or more `pull_request_rules`. It must be removed from the configuration.**\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules",
+            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `allow_merging_configuration_change` attribute of the queue action in one or more `pull_request_rules`. It must be removed from the configuration.**\n> A brownout is planned on September 16th, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#queue-rules"
           },
           "default": true,
           "title": "Allow Merging Configuration Change",
@@ -1499,8 +1508,8 @@
             }
           ],
           "configuration_deprecated_attribute": {
-            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `priority_rules` attribute in the `queue_rules` section. The priority rules must now be set at the top level of the configuration file.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules\n\n\n    ",
-            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `priority_rules` attribute in the `queue_rules` section. The priority rules must now be set at the top level of the configuration file.**\n> A brownout is planned on October 26th, 2024.\n> This option will be removed on November 26th, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules\n\n\n    "
+            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `priority_rules` attribute in the `queue_rules` section. The priority rules must now be set at the top level of the configuration file.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules",
+            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `priority_rules` attribute in the `queue_rules` section. The priority rules must now be set at the top level of the configuration file.**\n> A brownout is planned on October 26th, 2024.\n> This option will be removed on November 26th, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules"
           }
         },
         "queue_conditions": {
@@ -1681,8 +1690,8 @@
         },
         "disallow_checks_interruption_from_queues": {
           "configuration_deprecated_attribute": {
-            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `disallow_checks_interruption_from_queues` attribute in the `queue_rules` section. This option has been replaced by `allow_checks_interruption` at the top level of the configuration file in the `priority_rules` section.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules\n\n\n    ",
-            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `disallow_checks_interruption_from_queues` attribute in the `queue_rules` section. This option has been replaced by `allow_checks_interruption` at the top level of the configuration file in the `priority_rules` section.**\n> A brownout is planned on November 11th, 2024.\n> This option will be removed on December 11th, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules\n\n\n    "
+            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `disallow_checks_interruption_from_queues` attribute in the `queue_rules` section. This option has been replaced by `allow_checks_interruption` at the top level of the configuration file in the `priority_rules` section.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules",
+            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `disallow_checks_interruption_from_queues` attribute in the `queue_rules` section. This option has been replaced by `allow_checks_interruption` at the top level of the configuration file in the `priority_rules` section.**\n> A brownout is planned on November 11th, 2024.\n> This option will be removed on December 11th, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules"
           },
           "items": {
             "type": "string"
@@ -1701,8 +1710,8 @@
             }
           ],
           "configuration_deprecated_attribute": {
-            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `allow_checks_interruption` attribute in the `queue_rules` section. This option must now be set at the top level of the configuration file in the `priority_rules` section.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules\n\n\n    ",
-            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `allow_checks_interruption` attribute in the `queue_rules` section. This option must now be set at the top level of the configuration file in the `priority_rules` section.**\n> A brownout is planned on November 11th, 2024.\n> This option will be removed on December 11th, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules\n\n\n    "
+            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `allow_checks_interruption` attribute in the `queue_rules` section. This option must now be set at the top level of the configuration file in the `priority_rules` section.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules",
+            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `allow_checks_interruption` attribute in the `queue_rules` section. This option must now be set at the top level of the configuration file in the `priority_rules` section.**\n> A brownout is planned on November 11th, 2024.\n> This option will be removed on December 11th, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules"
           },
           "default": null,
           "title": "Allow Checks Interruption"
@@ -1728,8 +1737,8 @@
             }
           ],
           "configuration_deprecated_attribute": {
-            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `priority_rules` attribute in the `queue_rules` section. The priority rules must now be set at the top level of the configuration file.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules\n\n\n    ",
-            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `priority_rules` attribute in the `queue_rules` section. The priority rules must now be set at the top level of the configuration file.**\n> A brownout is planned on October 26th, 2024.\n> This option will be removed on November 26th, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules\n\n\n    "
+            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `priority_rules` attribute in the `queue_rules` section. The priority rules must now be set at the top level of the configuration file.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules",
+            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `priority_rules` attribute in the `queue_rules` section. The priority rules must now be set at the top level of the configuration file.**\n> A brownout is planned on October 26th, 2024.\n> This option will be removed on November 26th, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules"
           }
         },
         "queue_conditions": {
@@ -1910,8 +1919,8 @@
         },
         "disallow_checks_interruption_from_queues": {
           "configuration_deprecated_attribute": {
-            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `disallow_checks_interruption_from_queues` attribute in the `queue_rules` section. This option has been replaced by `allow_checks_interruption` at the top level of the configuration file in the `priority_rules` section.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules\n\n\n    ",
-            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `disallow_checks_interruption_from_queues` attribute in the `queue_rules` section. This option has been replaced by `allow_checks_interruption` at the top level of the configuration file in the `priority_rules` section.**\n> A brownout is planned on November 11th, 2024.\n> This option will be removed on December 11th, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules\n\n\n    "
+            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `disallow_checks_interruption_from_queues` attribute in the `queue_rules` section. This option has been replaced by `allow_checks_interruption` at the top level of the configuration file in the `priority_rules` section.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules",
+            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `disallow_checks_interruption_from_queues` attribute in the `queue_rules` section. This option has been replaced by `allow_checks_interruption` at the top level of the configuration file in the `priority_rules` section.**\n> A brownout is planned on November 11th, 2024.\n> This option will be removed on December 11th, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules"
           },
           "items": {
             "type": "string"
@@ -1930,8 +1939,8 @@
             }
           ],
           "configuration_deprecated_attribute": {
-            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `allow_checks_interruption` attribute in the `queue_rules` section. This option must now be set at the top level of the configuration file in the `priority_rules` section.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules\n\n\n    ",
-            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `allow_checks_interruption` attribute in the `queue_rules` section. This option must now be set at the top level of the configuration file in the `priority_rules` section.**\n> A brownout is planned on November 11th, 2024.\n> This option will be removed on December 11th, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules\n\n\n    "
+            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `allow_checks_interruption` attribute in the `queue_rules` section. This option must now be set at the top level of the configuration file in the `priority_rules` section.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules",
+            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `allow_checks_interruption` attribute in the `queue_rules` section. This option must now be set at the top level of the configuration file in the `priority_rules` section.**\n> A brownout is planned on November 11th, 2024.\n> This option will be removed on December 11th, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules"
           },
           "default": null,
           "title": "Allow Checks Interruption"
