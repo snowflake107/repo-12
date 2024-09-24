@@ -202,7 +202,7 @@
           "default": null
         }
       },
-      "title": "ActionsModel",
+      "title": "Actions",
       "type": "object"
     },
     "AndCondition": {
@@ -1109,6 +1109,21 @@
       "title": "MergeProtectionRulesModel",
       "type": "array"
     },
+    "MergeQueueModel": {
+      "additionalProperties": false,
+      "properties": {
+        "max_parallel_checks": {
+          "default": 1,
+          "description": "The maximum number of speculative checks allowed to run at the same time.",
+          "maximum": 128,
+          "minimum": 1,
+          "title": "Max Parallel Checks",
+          "type": "integer"
+        }
+      },
+      "title": "MergeQueueModel",
+      "type": "object"
+    },
     "MergifyConfigModel": {
       "properties": {
         "shared": {
@@ -1156,6 +1171,9 @@
         },
         "priority_rules": {
           "$ref": "#/$defs/PriorityRulesModel"
+        },
+        "merge_queue": {
+          "$ref": "#/$defs/MergeQueueModel"
         }
       },
       "title": "MergifyConfigModel",
@@ -1324,11 +1342,17 @@
       "additionalProperties": false,
       "properties": {
         "name": {
+          "description": "Name of the rule.",
           "title": "Name",
           "type": "string"
         },
         "conditions": {
-          "$ref": "#/$defs/PriorityRuleConditionsModel"
+          "allOf": [
+            {
+              "$ref": "#/$defs/PriorityRuleConditionsModel"
+            }
+          ],
+          "description": "The list of conditions that needs to match to assign priority to the pull request."
         },
         "priority": {
           "anyOf": [
@@ -1344,11 +1368,13 @@
               "type": "integer"
             }
           ],
-          "default": 2000,
+          "default": "medium",
+          "description": "The priority of the pull request.",
           "title": "Priority"
         },
         "allow_checks_interruption": {
           "default": true,
+          "description": "Allow interrupting the ongoing checks when the pull request entering the queue has a higher priority than the queued one(s). If set to false, a pull request with higher priority will be inserted just after the pull requests that have checks running.",
           "title": "Allow Checks Interruption",
           "type": "boolean"
         }
@@ -1393,6 +1419,7 @@
       "additionalProperties": false,
       "properties": {
         "name": {
+          "description": "The name of the rule. This is used when reporting information about a rule. It's not possible to have two rules with the same name.",
           "title": "Name",
           "type": "string"
         },
@@ -1406,6 +1433,7 @@
             }
           ],
           "default": null,
+          "description": "A description of the rule.",
           "title": "Description"
         },
         "disabled": {
@@ -1417,13 +1445,24 @@
               "type": "null"
             }
           ],
-          "default": null
+          "default": null,
+          "description": "If the rule is disabled, the reason why it's disabled."
         },
         "conditions": {
-          "$ref": "#/$defs/PullRequestRuleConditionsModel"
+          "allOf": [
+            {
+              "$ref": "#/$defs/PullRequestRuleConditionsModel"
+            }
+          ],
+          "description": "The conditions that must be met for the rule to be evaluated."
         },
         "actions": {
-          "$ref": "#/$defs/ActionsModel"
+          "allOf": [
+            {
+              "$ref": "#/$defs/ActionsModel"
+            }
+          ],
+          "description": "The actions to perform when the rule matches."
         }
       },
       "required": [
@@ -1431,7 +1470,7 @@
         "conditions",
         "actions"
       ],
-      "title": "PullRequestRuleModel",
+      "title": "Pull Request Rule",
       "type": "object"
     },
     "PullRequestRulesModel": {
@@ -1518,8 +1557,8 @@
           "anyOf": [
             {
               "enum": [
-                "merge",
-                "rebase"
+                "rebase",
+                "merge"
               ],
               "type": "string"
             },
@@ -1628,7 +1667,12 @@
           "type": "string"
         },
         "speculative_checks": {
+          "configuration_deprecated_attribute": {
+            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `speculative_checks` attribute in the `queue_rules` section. It has been replaced in favor of `max_parallel_checks` in the `merge_queue` section of the configuration.\n> For more information: https://docs.mergify.com/merge-queue/speculative-checks/",
+            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `speculative_checks` attribute in the `queue_rules` section. It has been replaced in favor of `max_parallel_checks` in the `merge_queue` section of the configuration.\n> For more information: https://docs.mergify.com/merge-queue/speculative-checks/"
+          },
           "default": 1,
+          "deprecated": true,
           "maximum": 128,
           "minimum": 1,
           "title": "Speculative Checks",
@@ -1739,8 +1783,8 @@
           "anyOf": [
             {
               "enum": [
-                "merge",
-                "rebase"
+                "rebase",
+                "merge"
               ],
               "type": "string"
             },
@@ -1857,7 +1901,12 @@
           "type": "string"
         },
         "speculative_checks": {
+          "configuration_deprecated_attribute": {
+            "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `speculative_checks` attribute in the `queue_rules` section. It has been replaced in favor of `max_parallel_checks` in the `merge_queue` section of the configuration.\n> For more information: https://docs.mergify.com/merge-queue/speculative-checks/",
+            "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `speculative_checks` attribute in the `queue_rules` section. It has been replaced in favor of `max_parallel_checks` in the `merge_queue` section of the configuration.\n> For more information: https://docs.mergify.com/merge-queue/speculative-checks/"
+          },
           "default": 1,
+          "deprecated": true,
           "maximum": 128,
           "minimum": 1,
           "title": "Speculative Checks",
@@ -1968,8 +2017,8 @@
           "anyOf": [
             {
               "enum": [
-                "merge",
-                "rebase"
+                "rebase",
+                "merge"
               ],
               "type": "string"
             },
