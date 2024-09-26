@@ -586,6 +586,159 @@
       "title": "CommentActionModel",
       "type": "object"
     },
+    "Commit": {
+      "properties": {
+        "sha": {
+          "title": "Sha",
+          "type": "string"
+        },
+        "parents": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Parents",
+          "type": "array"
+        },
+        "commit_message": {
+          "title": "Commit Message",
+          "type": "string"
+        },
+        "commit_verification_verified": {
+          "description": "Indicates if the commit has been marked as verified by GitHub",
+          "title": "Commit Verification Verified",
+          "type": "boolean"
+        },
+        "author": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Name of the author",
+          "title": "Author"
+        },
+        "committer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Name of the committer",
+          "title": "Committer"
+        },
+        "date_author": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Date Author"
+        },
+        "date_committer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Date Committer"
+        },
+        "email_author": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Email Author"
+        },
+        "email_committer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Email Committer"
+        },
+        "gh_author_login": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "GitHub login of the author",
+          "title": "Gh Author Login"
+        }
+      },
+      "required": [
+        "sha",
+        "parents",
+        "commit_message",
+        "commit_verification_verified",
+        "author",
+        "committer",
+        "date_author",
+        "date_committer",
+        "email_author",
+        "email_committer",
+        "gh_author_login"
+      ],
+      "title": "Commit",
+      "type": "object"
+    },
+    "CommitAuthor": {
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Name of the author",
+          "title": "Name"
+        },
+        "email": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Email address of the author",
+          "title": "Email"
+        }
+      },
+      "required": [
+        "name",
+        "email"
+      ],
+      "title": "CommitAuthor",
+      "type": "object"
+    },
     "CopyActionModel": {
       "additionalProperties": false,
       "properties": {
