@@ -4751,6 +4751,10 @@
             "type": "integer",
             "title": "Ci Issue Id"
           },
+          "failure_id": {
+            "type": "integer",
+            "title": "Failure Id"
+          },
           "ci_issue_short_id": {
             "type": "string",
             "title": "Ci Issue Short Id"
@@ -4784,6 +4788,7 @@
         "type": "object",
         "required": [
           "ci_issue_id",
+          "failure_id",
           "ci_issue_short_id",
           "timestamp",
           "job_name",
@@ -4864,6 +4869,10 @@
             "type": "integer",
             "title": "Ci Issue Id"
           },
+          "failure_id": {
+            "type": "integer",
+            "title": "Failure Id"
+          },
           "ci_issue_short_id": {
             "type": "string",
             "title": "Ci Issue Short Id"
@@ -4897,6 +4906,7 @@
         "type": "object",
         "required": [
           "ci_issue_id",
+          "failure_id",
           "ci_issue_short_id",
           "timestamp",
           "job_name",
@@ -5191,6 +5201,10 @@
             "type": "integer",
             "title": "Ci Issue Id"
           },
+          "failure_id": {
+            "type": "integer",
+            "title": "Failure Id"
+          },
           "ci_issue_short_id": {
             "type": "string",
             "title": "Ci Issue Short Id"
@@ -5224,6 +5238,7 @@
         "type": "object",
         "required": [
           "ci_issue_id",
+          "failure_id",
           "ci_issue_short_id",
           "timestamp",
           "job_name",
