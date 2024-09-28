@@ -4752,7 +4752,14 @@
             "title": "Ci Issue Id"
           },
           "failure_id": {
-            "type": "integer",
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Failure Id"
           },
           "ci_issue_short_id": {
@@ -4870,7 +4877,14 @@
             "title": "Ci Issue Id"
           },
           "failure_id": {
-            "type": "integer",
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Failure Id"
           },
           "ci_issue_short_id": {
@@ -5202,7 +5216,14 @@
             "title": "Ci Issue Id"
           },
           "failure_id": {
-            "type": "integer",
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Failure Id"
           },
           "ci_issue_short_id": {
