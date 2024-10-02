@@ -1449,8 +1449,9 @@
               "anyOf": [
                 {
                   "type": "integer",
-                  "minimum": 1,
-                  "exclusiveMaximum": 2147483647
+                  "minimum": 0,
+                  "ge": 1,
+                  "lt": 2147483647
                 },
                 {
                   "type": "null"
@@ -4292,6 +4293,7 @@
           },
           "pull_request_number": {
             "type": "integer",
+            "minimum": 0.0,
             "title": "Pull Request Number",
             "description": "The number of the pull request used by the speculative check"
           },
@@ -9736,6 +9738,7 @@
         "properties": {
           "number": {
             "type": "integer",
+            "minimum": 0.0,
             "title": "Number",
             "description": "The number of the pull request"
           },
@@ -9810,6 +9813,7 @@
         "properties": {
           "number": {
             "type": "integer",
+            "minimum": 0.0,
             "title": "Number",
             "description": "The number of the pull request"
           },
@@ -9908,6 +9912,7 @@
           },
           "number": {
             "type": "integer",
+            "minimum": 0.0,
             "title": "Number",
             "description": "The number of the pull request used by the speculative check"
           },
