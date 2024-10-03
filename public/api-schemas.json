@@ -4678,9 +4678,9 @@
             ],
             "title": "Failure Id"
           },
-          "ci_issue_short_id": {
+          "ci_issue_long_id": {
             "type": "string",
-            "title": "Ci Issue Short Id"
+            "title": "Ci Issue Long Id"
           },
           "timestamp": {
             "type": "string",
@@ -4706,17 +4706,22 @@
             "type": "string",
             "format": "date-time",
             "title": "Job Completed At"
+          },
+          "ci_issue_short_id": {
+            "type": "string",
+            "title": "Ci Issue Short Id"
           }
         },
         "type": "object",
         "required": [
           "ci_issue_id",
           "failure_id",
-          "ci_issue_short_id",
+          "ci_issue_long_id",
           "timestamp",
           "job_name",
           "job_url",
-          "job_completed_at"
+          "job_completed_at",
+          "ci_issue_short_id"
         ],
         "title": "EventCiIssueCreatedMetadata"
       },
@@ -4803,9 +4808,9 @@
             ],
             "title": "Failure Id"
           },
-          "ci_issue_short_id": {
+          "ci_issue_long_id": {
             "type": "string",
-            "title": "Ci Issue Short Id"
+            "title": "Ci Issue Long Id"
           },
           "timestamp": {
             "type": "string",
@@ -4831,17 +4836,22 @@
             "type": "string",
             "format": "date-time",
             "title": "Job Completed At"
+          },
+          "ci_issue_short_id": {
+            "type": "string",
+            "title": "Ci Issue Short Id"
           }
         },
         "type": "object",
         "required": [
           "ci_issue_id",
           "failure_id",
-          "ci_issue_short_id",
+          "ci_issue_long_id",
           "timestamp",
           "job_name",
           "job_url",
-          "job_completed_at"
+          "job_completed_at",
+          "ci_issue_short_id"
         ],
         "title": "EventCiIssueLinkedMetadata"
       },
@@ -4917,9 +4927,9 @@
             "type": "integer",
             "title": "Ci Issue Id"
           },
-          "ci_issue_short_id": {
+          "ci_issue_long_id": {
             "type": "string",
-            "title": "Ci Issue Short Id"
+            "title": "Ci Issue Long Id"
           },
           "timestamp": {
             "type": "string",
@@ -4936,6 +4946,17 @@
             "type": "array",
             "title": "Merged With Ci Issue Ids"
           },
+          "merged_with_ci_issue_long_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Merged With Ci Issue Long Ids"
+          },
+          "ci_issue_short_id": {
+            "type": "string",
+            "title": "Ci Issue Short Id"
+          },
           "merged_with_ci_issue_short_ids": {
             "items": {
               "type": "string"
@@ -4947,10 +4968,12 @@
         "type": "object",
         "required": [
           "ci_issue_id",
-          "ci_issue_short_id",
+          "ci_issue_long_id",
           "timestamp",
           "merged_by",
           "merged_with_ci_issue_ids",
+          "merged_with_ci_issue_long_ids",
+          "ci_issue_short_id",
           "merged_with_ci_issue_short_ids"
         ],
         "title": "EventCiIssueMergedMetadata"
@@ -5027,9 +5050,9 @@
             "type": "integer",
             "title": "Ci Issue Id"
           },
-          "ci_issue_short_id": {
+          "ci_issue_long_id": {
             "type": "string",
-            "title": "Ci Issue Short Id"
+            "title": "Ci Issue Long Id"
           },
           "timestamp": {
             "type": "string",
@@ -5046,16 +5069,21 @@
           "new_name": {
             "type": "string",
             "title": "New Name"
+          },
+          "ci_issue_short_id": {
+            "type": "string",
+            "title": "Ci Issue Short Id"
           }
         },
         "type": "object",
         "required": [
           "ci_issue_id",
-          "ci_issue_short_id",
+          "ci_issue_long_id",
           "timestamp",
           "renamed_by",
           "old_name",
-          "new_name"
+          "new_name",
+          "ci_issue_short_id"
         ],
         "title": "EventCiIssueRenamedMetadata"
       },
@@ -5142,9 +5170,9 @@
             ],
             "title": "Failure Id"
           },
-          "ci_issue_short_id": {
+          "ci_issue_long_id": {
             "type": "string",
-            "title": "Ci Issue Short Id"
+            "title": "Ci Issue Long Id"
           },
           "timestamp": {
             "type": "string",
@@ -5170,17 +5198,22 @@
             "type": "string",
             "format": "date-time",
             "title": "Job Completed At"
+          },
+          "ci_issue_short_id": {
+            "type": "string",
+            "title": "Ci Issue Short Id"
           }
         },
         "type": "object",
         "required": [
           "ci_issue_id",
           "failure_id",
-          "ci_issue_short_id",
+          "ci_issue_long_id",
           "timestamp",
           "job_name",
           "job_url",
-          "job_completed_at"
+          "job_completed_at",
+          "ci_issue_short_id"
         ],
         "title": "EventCiIssueReopenedMetadata"
       },
@@ -5256,9 +5289,9 @@
             "type": "integer",
             "title": "Ci Issue Id"
           },
-          "ci_issue_short_id": {
+          "ci_issue_long_id": {
             "type": "string",
-            "title": "Ci Issue Short Id"
+            "title": "Ci Issue Long Id"
           },
           "timestamp": {
             "type": "string",
@@ -5267,14 +5300,19 @@
           },
           "resolved_by": {
             "$ref": "#/components/schemas/Actor"
+          },
+          "ci_issue_short_id": {
+            "type": "string",
+            "title": "Ci Issue Short Id"
           }
         },
         "type": "object",
         "required": [
           "ci_issue_id",
-          "ci_issue_short_id",
+          "ci_issue_long_id",
           "timestamp",
-          "resolved_by"
+          "resolved_by",
+          "ci_issue_short_id"
         ],
         "title": "EventCiIssueResolvedMetadata"
       },
@@ -5350,9 +5388,9 @@
             "type": "integer",
             "title": "Ci Issue Id"
           },
-          "ci_issue_short_id": {
+          "ci_issue_long_id": {
             "type": "string",
-            "title": "Ci Issue Short Id"
+            "title": "Ci Issue Long Id"
           },
           "timestamp": {
             "type": "string",
@@ -5361,14 +5399,19 @@
           },
           "unresolved_by": {
             "$ref": "#/components/schemas/Actor"
+          },
+          "ci_issue_short_id": {
+            "type": "string",
+            "title": "Ci Issue Short Id"
           }
         },
         "type": "object",
         "required": [
           "ci_issue_id",
-          "ci_issue_short_id",
+          "ci_issue_long_id",
           "timestamp",
-          "unresolved_by"
+          "unresolved_by",
+          "ci_issue_short_id"
         ],
         "title": "EventCiIssueUnresolvedMetadata"
       },
