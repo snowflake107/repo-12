@@ -4706,10 +4706,6 @@
             "type": "string",
             "format": "date-time",
             "title": "Job Completed At"
-          },
-          "ci_issue_short_id": {
-            "type": "string",
-            "title": "Ci Issue Short Id"
           }
         },
         "type": "object",
@@ -4720,8 +4716,7 @@
           "timestamp",
           "job_name",
           "job_url",
-          "job_completed_at",
-          "ci_issue_short_id"
+          "job_completed_at"
         ],
         "title": "EventCiIssueCreatedMetadata"
       },
@@ -4836,10 +4831,6 @@
             "type": "string",
             "format": "date-time",
             "title": "Job Completed At"
-          },
-          "ci_issue_short_id": {
-            "type": "string",
-            "title": "Ci Issue Short Id"
           }
         },
         "type": "object",
@@ -4850,8 +4841,7 @@
           "timestamp",
           "job_name",
           "job_url",
-          "job_completed_at",
-          "ci_issue_short_id"
+          "job_completed_at"
         ],
         "title": "EventCiIssueLinkedMetadata"
       },
@@ -4952,17 +4942,6 @@
             },
             "type": "array",
             "title": "Merged With Ci Issue Long Ids"
-          },
-          "ci_issue_short_id": {
-            "type": "string",
-            "title": "Ci Issue Short Id"
-          },
-          "merged_with_ci_issue_short_ids": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "title": "Merged With Ci Issue Short Ids"
           }
         },
         "type": "object",
@@ -4972,9 +4951,7 @@
           "timestamp",
           "merged_by",
           "merged_with_ci_issue_ids",
-          "merged_with_ci_issue_long_ids",
-          "ci_issue_short_id",
-          "merged_with_ci_issue_short_ids"
+          "merged_with_ci_issue_long_ids"
         ],
         "title": "EventCiIssueMergedMetadata"
       },
@@ -5069,10 +5046,6 @@
           "new_name": {
             "type": "string",
             "title": "New Name"
-          },
-          "ci_issue_short_id": {
-            "type": "string",
-            "title": "Ci Issue Short Id"
           }
         },
         "type": "object",
@@ -5082,8 +5055,7 @@
           "timestamp",
           "renamed_by",
           "old_name",
-          "new_name",
-          "ci_issue_short_id"
+          "new_name"
         ],
         "title": "EventCiIssueRenamedMetadata"
       },
@@ -5198,10 +5170,6 @@
             "type": "string",
             "format": "date-time",
             "title": "Job Completed At"
-          },
-          "ci_issue_short_id": {
-            "type": "string",
-            "title": "Ci Issue Short Id"
           }
         },
         "type": "object",
@@ -5212,8 +5180,7 @@
           "timestamp",
           "job_name",
           "job_url",
-          "job_completed_at",
-          "ci_issue_short_id"
+          "job_completed_at"
         ],
         "title": "EventCiIssueReopenedMetadata"
       },
@@ -5300,10 +5267,6 @@
           },
           "resolved_by": {
             "$ref": "#/components/schemas/Actor"
-          },
-          "ci_issue_short_id": {
-            "type": "string",
-            "title": "Ci Issue Short Id"
           }
         },
         "type": "object",
@@ -5311,8 +5274,7 @@
           "ci_issue_id",
           "ci_issue_long_id",
           "timestamp",
-          "resolved_by",
-          "ci_issue_short_id"
+          "resolved_by"
         ],
         "title": "EventCiIssueResolvedMetadata"
       },
@@ -5399,10 +5361,6 @@
           },
           "unresolved_by": {
             "$ref": "#/components/schemas/Actor"
-          },
-          "ci_issue_short_id": {
-            "type": "string",
-            "title": "Ci Issue Short Id"
           }
         },
         "type": "object",
@@ -5410,8 +5368,7 @@
           "ci_issue_id",
           "ci_issue_long_id",
           "timestamp",
-          "unresolved_by",
-          "ci_issue_short_id"
+          "unresolved_by"
         ],
         "title": "EventCiIssueUnresolvedMetadata"
       },

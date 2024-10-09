@@ -1277,61 +1277,6 @@
       "title": "MergeQueueModel",
       "type": "object"
     },
-    "MergifyConfigModel": {
-      "properties": {
-        "shared": {
-          "anyOf": [
-            {
-              "type": "object"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Shared"
-        },
-        "extends": {
-          "anyOf": [
-            {
-              "minLength": 1,
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "title": "Extends"
-        },
-        "defaults": {
-          "$ref": "#/$defs/DefaultsRulesModel"
-        },
-        "commands_restrictions": {
-          "$ref": "#/$defs/CommandsRestrictionsRulesModel"
-        },
-        "pull_request_rules": {
-          "$ref": "#/$defs/PullRequestRulesModel"
-        },
-        "queue_rules": {
-          "$ref": "#/$defs/QueueRulesModel"
-        },
-        "partition_rules": {
-          "$ref": "#/$defs/PartitionRulesModel"
-        },
-        "merge_protections": {
-          "$ref": "#/$defs/MergeProtectionRulesModel"
-        },
-        "priority_rules": {
-          "$ref": "#/$defs/PriorityRulesModel"
-        },
-        "merge_queue": {
-          "$ref": "#/$defs/MergeQueueModel"
-        }
-      },
-      "title": "MergifyConfigModel",
-      "type": "object"
-    },
     "NegationCondition": {
       "additionalProperties": false,
       "properties": {
@@ -1831,7 +1776,7 @@
         },
         "branch_protection_injection_mode": {
           "default": "queue",
-          "description": "Branch protections conditions injection mode to use.\n\n- `queue` will inject branch protections conditions as required conditions for queuing and merging pull requests.\n= `merge` will inject branch protections conditions as required conditions only for merging pull requests.\n` none` will disable branch protections. This mode is supported only on queues using a `merge_bot_account` with admin rights.",
+          "description": "Branch protections conditions injection mode to use.\n\n- `queue` will inject branch protections conditions as required conditions for queuing and merging pull requests.\n- `merge` will inject branch protections conditions as required conditions only for merging pull requests.\n- `none` will disable branch protections. This mode is supported only on queues using a `merge_bot_account` with admin rights.",
           "enum": [
             "queue",
             "merge",
@@ -2095,7 +2040,7 @@
         },
         "branch_protection_injection_mode": {
           "default": "queue",
-          "description": "Branch protections conditions injection mode to use.\n\n- `queue` will inject branch protections conditions as required conditions for queuing and merging pull requests.\n= `merge` will inject branch protections conditions as required conditions only for merging pull requests.\n` none` will disable branch protections. This mode is supported only on queues using a `merge_bot_account` with admin rights.",
+          "description": "Branch protections conditions injection mode to use.\n\n- `queue` will inject branch protections conditions as required conditions for queuing and merging pull requests.\n- `merge` will inject branch protections conditions as required conditions only for merging pull requests.\n- `none` will disable branch protections. This mode is supported only on queues using a `merge_bot_account` with admin rights.",
           "enum": [
             "queue",
             "merge",
@@ -2559,5 +2504,60 @@
       "title": "UpdateActionModel",
       "type": "object"
     }
-  }
+  },
+  "title": "MergifyConfigModel",
+  "type": "object",
+  "properties": {
+    "shared": {
+      "anyOf": [
+        {
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Shared"
+    },
+    "extends": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Extends"
+    },
+    "defaults": {
+      "$ref": "#/$defs/DefaultsRulesModel"
+    },
+    "commands_restrictions": {
+      "$ref": "#/$defs/CommandsRestrictionsRulesModel"
+    },
+    "pull_request_rules": {
+      "$ref": "#/$defs/PullRequestRulesModel"
+    },
+    "queue_rules": {
+      "$ref": "#/$defs/QueueRulesModel"
+    },
+    "partition_rules": {
+      "$ref": "#/$defs/PartitionRulesModel"
+    },
+    "merge_protections": {
+      "$ref": "#/$defs/MergeProtectionRulesModel"
+    },
+    "priority_rules": {
+      "$ref": "#/$defs/PriorityRulesModel"
+    },
+    "merge_queue": {
+      "$ref": "#/$defs/MergeQueueModel"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false
 }
