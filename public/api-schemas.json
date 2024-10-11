@@ -4667,6 +4667,15 @@
             "type": "integer",
             "title": "Ci Issue Id"
           },
+          "ci_issue_long_id": {
+            "type": "string",
+            "title": "Ci Issue Long Id"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Timestamp"
+          },
           "failure_id": {
             "anyOf": [
               {
@@ -4677,15 +4686,6 @@
               }
             ],
             "title": "Failure Id"
-          },
-          "ci_issue_long_id": {
-            "type": "string",
-            "title": "Ci Issue Long Id"
-          },
-          "timestamp": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Timestamp"
           },
           "job_name": {
             "type": "string",
@@ -4711,9 +4711,9 @@
         "type": "object",
         "required": [
           "ci_issue_id",
-          "failure_id",
           "ci_issue_long_id",
           "timestamp",
+          "failure_id",
           "job_name",
           "job_url",
           "job_completed_at"
@@ -4792,6 +4792,15 @@
             "type": "integer",
             "title": "Ci Issue Id"
           },
+          "ci_issue_long_id": {
+            "type": "string",
+            "title": "Ci Issue Long Id"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Timestamp"
+          },
           "failure_id": {
             "anyOf": [
               {
@@ -4802,15 +4811,6 @@
               }
             ],
             "title": "Failure Id"
-          },
-          "ci_issue_long_id": {
-            "type": "string",
-            "title": "Ci Issue Long Id"
-          },
-          "timestamp": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Timestamp"
           },
           "job_name": {
             "type": "string",
@@ -4836,9 +4836,9 @@
         "type": "object",
         "required": [
           "ci_issue_id",
-          "failure_id",
           "ci_issue_long_id",
           "timestamp",
+          "failure_id",
           "job_name",
           "job_url",
           "job_completed_at"
@@ -5131,6 +5131,15 @@
             "type": "integer",
             "title": "Ci Issue Id"
           },
+          "ci_issue_long_id": {
+            "type": "string",
+            "title": "Ci Issue Long Id"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Timestamp"
+          },
           "failure_id": {
             "anyOf": [
               {
@@ -5141,15 +5150,6 @@
               }
             ],
             "title": "Failure Id"
-          },
-          "ci_issue_long_id": {
-            "type": "string",
-            "title": "Ci Issue Long Id"
-          },
-          "timestamp": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Timestamp"
           },
           "job_name": {
             "type": "string",
@@ -5175,9 +5175,9 @@
         "type": "object",
         "required": [
           "ci_issue_id",
-          "failure_id",
           "ci_issue_long_id",
           "timestamp",
+          "failure_id",
           "job_name",
           "job_url",
           "job_completed_at"
