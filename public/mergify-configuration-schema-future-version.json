@@ -223,7 +223,10 @@
       "properties": {
         "users": {
           "items": {
-            "$ref": "#/$defs/Template"
+            "description": "A string template using the Jinja2 syntax.",
+            "format": "template",
+            "title": "Template",
+            "type": "string"
           },
           "maxItems": 10,
           "title": "Users",
@@ -231,7 +234,10 @@
         },
         "add_users": {
           "items": {
-            "$ref": "#/$defs/Template"
+            "description": "A string template using the Jinja2 syntax.",
+            "format": "template",
+            "title": "Template",
+            "type": "string"
           },
           "maxItems": 10,
           "title": "Add Users",
@@ -239,7 +245,10 @@
         },
         "remove_users": {
           "items": {
-            "$ref": "#/$defs/Template"
+            "description": "A string template using the Jinja2 syntax.",
+            "format": "template",
+            "title": "Template",
+            "type": "string"
           },
           "maxItems": 40,
           "title": "Remove Users",
@@ -255,7 +264,10 @@
         "bot_account": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -288,7 +300,10 @@
         },
         "assignees": {
           "items": {
-            "$ref": "#/$defs/Template"
+            "description": "A string template using the Jinja2 syntax.",
+            "format": "template",
+            "title": "Template",
+            "type": "string"
           },
           "maxItems": 10,
           "title": "Assignees",
@@ -308,22 +323,18 @@
           "type": "string"
         },
         "title": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/Template"
-            }
-          ],
           "default": "{{ title }} (backport #{{ number }})",
-          "title": "Title"
+          "description": "A string template using the Jinja2 syntax.",
+          "format": "template",
+          "title": "Template",
+          "type": "string"
         },
         "body": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/Template"
-            }
-          ],
           "default": "{{ body }}<hr>This is an automatic backport of pull request #{{number}} done by [Mergify](https://mergify.com).\n",
-          "title": "Body"
+          "description": "A string template using the Jinja2 syntax.",
+          "format": "template",
+          "title": "Template",
+          "type": "string"
         },
         "report_mode": {
           "default": [
@@ -363,13 +374,11 @@
       "additionalProperties": false,
       "properties": {
         "message": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/Template"
-            }
-          ],
           "default": "This pull request has been automatically closed by Mergify.",
-          "title": "Message"
+          "description": "A string template using the Jinja2 syntax.",
+          "format": "template",
+          "title": "Template",
+          "type": "string"
         }
       },
       "title": "CloseActionModel",
@@ -559,7 +568,10 @@
         "message": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -572,7 +584,10 @@
         "bot_account": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -745,7 +760,10 @@
         "bot_account": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -778,7 +796,10 @@
         },
         "assignees": {
           "items": {
-            "$ref": "#/$defs/Template"
+            "description": "A string template using the Jinja2 syntax.",
+            "format": "template",
+            "title": "Template",
+            "type": "string"
           },
           "maxItems": 10,
           "title": "Assignees",
@@ -798,22 +819,18 @@
           "type": "string"
         },
         "title": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/Template"
-            }
-          ],
           "default": "{{ title }} (copy #{{ number }})",
-          "title": "Title"
+          "description": "A string template using the Jinja2 syntax.",
+          "format": "template",
+          "title": "Template",
+          "type": "string"
         },
         "body": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/Template"
-            }
-          ],
           "default": "{{ body }}<hr>This is an automatic copy of pull request #{{number}} done by [Mergify](https://mergify.com).\n",
-          "title": "Body"
+          "description": "A string template using the Jinja2 syntax.",
+          "format": "template",
+          "title": "Template",
+          "type": "string"
         },
         "report_mode": {
           "default": [
@@ -944,7 +961,10 @@
         "message": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -974,7 +994,10 @@
         "bot_account": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -1045,7 +1068,10 @@
                 "type": "boolean"
               },
               {
-                "$ref": "#/$defs/Template"
+                "description": "A string template using the Jinja2 syntax.",
+                "format": "template",
+                "title": "Template",
+                "type": "string"
               }
             ]
           },
@@ -1078,6 +1104,18 @@
       "title": "Workflow Action",
       "type": "object"
     },
+    "GitHubRepositoryPermission": {
+      "enum": [
+        "none",
+        "read",
+        "triage",
+        "write",
+        "maintain",
+        "admin"
+      ],
+      "title": "GitHubRepositoryPermission",
+      "type": "string"
+    },
     "LabelActionModel": {
       "additionalProperties": false,
       "description": "Add or remove labels on a pull request.",
@@ -1085,7 +1123,10 @@
         "add": {
           "description": "The list of labels to add.",
           "items": {
-            "$ref": "#/$defs/Template"
+            "description": "A string template using the Jinja2 syntax.",
+            "format": "template",
+            "title": "Template",
+            "type": "string"
           },
           "maxItems": 50,
           "title": "Add",
@@ -1094,7 +1135,10 @@
         "remove": {
           "description": "The list of labels to remove.",
           "items": {
-            "$ref": "#/$defs/Template"
+            "description": "A string template using the Jinja2 syntax.",
+            "format": "template",
+            "title": "Template",
+            "type": "string"
           },
           "maxItems": 50,
           "title": "Remove",
@@ -1109,7 +1153,10 @@
         "toggle": {
           "description": "Toggle labels in the list based on the conditions. If all the conditions are a success, all the labels in the list will be added, otherwise, they will all be removed.",
           "items": {
-            "$ref": "#/$defs/Template"
+            "description": "A string template using the Jinja2 syntax.",
+            "format": "template",
+            "title": "Template",
+            "type": "string"
           },
           "maxItems": 50,
           "title": "Toggle",
@@ -1165,7 +1212,10 @@
         "merge_bot_account": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -1178,7 +1228,10 @@
         "commit_message_template": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -1376,24 +1429,18 @@
       "additionalProperties": false,
       "properties": {
         "title": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/Template"
-            }
-          ],
           "default": "'{{ check_rule_name }}'{% if check_status == 'success' %} succeeded{% elif check_status == 'failure' %} failed{% endif %}",
           "description": "The title of the check.",
-          "title": "Title"
+          "format": "template",
+          "title": "Template",
+          "type": "string"
         },
         "summary": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/Template"
-            }
-          ],
           "default": "{{ check_conditions }}",
           "description": "The summary of the check.",
-          "title": "Summary"
+          "format": "template",
+          "title": "Template",
+          "type": "string"
         },
         "success_conditions": {
           "anyOf": [
@@ -1499,6 +1546,651 @@
       "maxItems": 50,
       "title": "PriorityRulesModel",
       "type": "array"
+    },
+    "PullRequestAttributes": {
+      "properties": {
+        "draft": {
+          "description": "Whether the pull request is in draft state.",
+          "title": "Draft",
+          "type": "boolean"
+        },
+        "merged": {
+          "description": "Whether the pull request is merged.",
+          "title": "Merged",
+          "type": "boolean"
+        },
+        "mergify-configuration-changed": {
+          "description": "Whether the pull request contains changes in the configuration file.",
+          "title": "Mergify configuration changed",
+          "type": "boolean"
+        },
+        "closed": {
+          "description": "Whether the pull request is closed.",
+          "title": "Closed",
+          "type": "boolean"
+        },
+        "locked": {
+          "description": "Whether the pull request is locked.",
+          "title": "Locked",
+          "type": "boolean"
+        },
+        "linear-history": {
+          "description": "Whether the pull request commits history is linear (no merge commit).",
+          "title": "Linear history",
+          "type": "boolean"
+        },
+        "conflict": {
+          "description": "Whether the pull request is conflicting with its base branch.",
+          "title": "Conflict",
+          "type": "boolean"
+        },
+        "branch-protection-review-decision": {
+          "description": "The review decision. This indicates if `CODEOWNERS` have reviewed the pull request when the `Require Review from Code Owners` branch protection rule is enabled.",
+          "title": "Branch protection review decision",
+          "type": "boolean"
+        },
+        "queue-frozen": {
+          "description": "Whether the pull request is in a queue that is frozen.",
+          "title": "Queue frozen",
+          "type": "boolean"
+        },
+        "number": {
+          "description": "The pull request number.",
+          "minimum": 0,
+          "title": "Number",
+          "type": "integer"
+        },
+        "queue-position": {
+          "description": "The position of the pull request in its queue if queued. The first pull request in the queue has position 0. The value is set to -1 if the pull request is not queued. If you are using partitions, this returns the maximum position of the pull request from all the partitions it is queued in.",
+          "title": "Queue position",
+          "type": "integer"
+        },
+        "author": {
+          "description": "The GitHub user or team login of the author of the pull request.",
+          "title": "Author",
+          "type": "string"
+        },
+        "merged-by": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The GitHub user that merged the pull request.",
+          "title": "Merged by"
+        },
+        "merge-commit-sha": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The merge commit SHA of the pull request returned by GitHub.",
+          "title": "Merge commit sha"
+        },
+        "milestone": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The milestone title associated to the pull request.",
+          "title": "Milestone"
+        },
+        "base": {
+          "description": "The name of the branch the pull request should be pulled into.",
+          "title": "Base",
+          "type": "string"
+        },
+        "head": {
+          "description": "The name of the branch where the pull request changes are implemented.",
+          "title": "Head",
+          "type": "string"
+        },
+        "head-repo-full-name": {
+          "description": "The head branch repository full name (complete version with the organization name).",
+          "title": "Head repo full name",
+          "type": "string"
+        },
+        "title": {
+          "description": "The title of the pull request.",
+          "title": "Title",
+          "type": "string"
+        },
+        "body": {
+          "description": "The content of the pull request description without Markdown/HTML comments.",
+          "title": "Body",
+          "type": "string"
+        },
+        "body-raw": {
+          "description": "The content of the pull request description.",
+          "title": "Body raw",
+          "type": "string"
+        },
+        "repository-name": {
+          "description": "The current repository name (short version without the organization name).",
+          "title": "Repository name",
+          "type": "string"
+        },
+        "repository-full-name": {
+          "description": "The current repository full name (complete version with the organization name).",
+          "title": "Repository full name",
+          "type": "string"
+        },
+        "queue-dequeue-reason": {
+          "anyOf": [
+            {
+              "const": "NONE",
+              "enum": [
+                "NONE"
+              ],
+              "type": "string"
+            },
+            {
+              "const": "PR_MERGED",
+              "enum": [
+                "PR_MERGED"
+              ],
+              "type": "string"
+            },
+            {
+              "enum": [
+                "PR_DEQUEUED",
+                "PR_AHEAD_DEQUEUED",
+                "PR_AHEAD_FAILED_TO_MERGE",
+                "PR_WITH_HIGHER_PRIORITY_QUEUED",
+                "PR_QUEUED_TWICE",
+                "SPECULATIVE_CHECK_NUMBER_REDUCED",
+                "CHECKS_TIMEOUT",
+                "CHECKS_FAILED",
+                "QUEUE_RULE_MISSING",
+                "UNEXPECTED_QUEUE_CHANGE",
+                "PR_FROZEN_NO_CASCADING",
+                "BASE_BRANCH_MISSING",
+                "BASE_BRANCH_CHANGED",
+                "PR_UNEXPECTEDLY_FAILED_TO_MERGE",
+                "BATCH_MAX_FAILURE_RESOLUTION_ATTEMPTS",
+                "PR_CHECKS_STOPPED_BECAUSE_MERGE_QUEUE_PAUSE",
+                "CONFLICT_WITH_BASE_BRANCH",
+                "CONFLICT_WITH_PULL_AHEAD",
+                "BRANCH_UPDATE_FAILED",
+                "DRAFT_PULL_REQUEST_CHANGED",
+                "PULL_REQUEST_UPDATED",
+                "MERGE_QUEUE_RESET",
+                "INCOMPATIBILITY_WITH_BRANCH_PROTECTIONS"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "A dequeue code for when a pull request has been disembarked from the merge queue.",
+          "title": "Queue dequeue reason"
+        },
+        "queue-name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The name of the queue containing the pull request.",
+          "title": "Queue name"
+        },
+        "queue-freeze-reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The reason for the queue containing the pull request to be frozen.",
+          "title": "Queue freeze reason"
+        },
+        "queue-partition-name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The name of the partitions the pull request is queued in.",
+          "title": "Queue partition name"
+        },
+        "assignee": {
+          "description": "The list of GitHub user or team login that are assigned to the pull request. Team logins are prefixed with the `@` character and must belong to the repository organization.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Assignee",
+          "type": "array"
+        },
+        "label": {
+          "description": "The list of labels of the pull request.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Label",
+          "type": "array"
+        },
+        "review-requested": {
+          "description": "The list of GitHub user or team login that were requested to review the pull request. Team logins are prefixed with the @ character. This only matches reviewers with `admin`, `write` or `maintain` permission on the repository.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Review requested",
+          "type": "array"
+        },
+        "approved-reviews-by": {
+          "description": "The list of GitHub user or team login that approved the pull request. Team logins are prefixed with the `@` character and must belong to the repository organization. This only matches reviewers with `admin`, `write` or `maintain` permission on the repository.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Approved reviews by",
+          "type": "array"
+        },
+        "dismissed-reviews-by": {
+          "description": "The list of GitHub user login that have their review dismissed in the pull request.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Dismissed reviews by",
+          "type": "array"
+        },
+        "changes-requested-reviews-by": {
+          "description": "The list of GitHub user or team login that have requested changes in a review for the pull request.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Changes requested reviews by",
+          "type": "array"
+        },
+        "commented-reviews-by": {
+          "description": "The list of GitHub user that have commented in a review for the pull request. This only matches reviewers with `admin`, `write` or `maintain` permission on the repository.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Commented reviews by",
+          "type": "array"
+        },
+        "check-success": {
+          "description": "The list of checks that successfully passed for the pull request.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Check success",
+          "type": "array"
+        },
+        "check-failure": {
+          "description": "The list of checks that failed for the pull request. Checks that report being cancelled, timed out, and action required are also considered as failures.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Check failure",
+          "type": "array"
+        },
+        "check-neutral": {
+          "description": "The list of checks that are neutral for the pull request. ",
+          "items": {
+            "type": "string"
+          },
+          "title": "Check neutral",
+          "type": "array"
+        },
+        "check-timed-out": {
+          "description": "The list of checks that timed out for the pull request.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Check timed out",
+          "type": "array"
+        },
+        "check-skipped": {
+          "description": "The list of checks that was skipped for the pull request.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Check skipped",
+          "type": "array"
+        },
+        "check-pending": {
+          "description": "The list of checks that are pending for the pull request.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Check pending",
+          "type": "array"
+        },
+        "check": {
+          "description": "The list of checks for that pull request.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Check",
+          "type": "array"
+        },
+        "check-stale": {
+          "description": "The list of checks that are stale for the pull request.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Check stale",
+          "type": "array"
+        },
+        "commits-unverified": {
+          "description": "The list of commit messages that are marked as unverified by GitHub.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Commits unverified",
+          "type": "array"
+        },
+        "review-threads-resolved": {
+          "description": "The list of bodies associated to review threads that are marked as resolved by GitHub.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Review threads resolved",
+          "type": "array"
+        },
+        "review-threads-unresolved": {
+          "description": "The list of bodies associated to review threads that are NOT marked as resolved by GitHub.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Review threads unresolved",
+          "type": "array"
+        },
+        "files": {
+          "description": "The files that are modified, deleted or added by the pull request.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Files",
+          "type": "array"
+        },
+        "added-files": {
+          "description": "The files that are added by the pull request.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Added files",
+          "type": "array"
+        },
+        "modified-files": {
+          "description": "The files that are modified by the pull request.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Modified files",
+          "type": "array"
+        },
+        "removed-files": {
+          "description": "The files that are removed by the pull request.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Removed files",
+          "type": "array"
+        },
+        "added-lines": {
+          "description": "The lines that are added by the pull request. Only usable as `#added-lines` for the number of added lines.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Added lines",
+          "type": "array"
+        },
+        "modified-lines": {
+          "description": "The lines that are modified by the pull request. Only usable as `#modified-lines` for the number of modified lines.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Modified lines",
+          "type": "array"
+        },
+        "deleted-lines": {
+          "description": "The lines that are deleted by the pull request. Only usable as `#deleted-lines` for the number of deleted lines.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Deleted lines",
+          "type": "array"
+        },
+        "co-authors": {
+          "description": "The list of co-authors on the pull request (excluding merge commits and bots).",
+          "items": {
+            "$ref": "#/$defs/CommitAuthor"
+          },
+          "title": "Co authors",
+          "type": "array"
+        },
+        "commits-behind": {
+          "description": "The list of commits between the head of the base branch and the base of the pull request. This can only be used with the length operator as `#commits-behind`.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Commits behind",
+          "type": "array"
+        },
+        "depends-on": {
+          "description": "The list of dependencies to other pull request in the format `owner/repo#prnumber`.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Depends on",
+          "type": "array"
+        },
+        "dependabot-dependency-name": {
+          "description": "The dependency-name value included in the Dependabot commit message.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Dependabot dependency name",
+          "type": "array"
+        },
+        "dependabot-dependency-type": {
+          "description": "The dependency-type value included in the Dependabot commit message.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Dependabot dependency type",
+          "type": "array"
+        },
+        "dependabot-update-type": {
+          "description": "The update-type value included in the Dependabot commit message.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Dependabot update type",
+          "type": "array"
+        },
+        "commits": {
+          "description": "The list of commits of the pull request. The index 0 is the first commit, while -1 is the last commit.",
+          "items": {
+            "$ref": "#/$defs/Commit"
+          },
+          "title": "Commits",
+          "type": "array"
+        },
+        "current-datetime": {
+          "description": "The current date and time.",
+          "format": "date-time",
+          "title": "Current datetime",
+          "type": "string"
+        },
+        "updated-at": {
+          "description": "The time the pull request was updated at.",
+          "format": "date-time",
+          "title": "Updated at",
+          "type": "string"
+        },
+        "created-at": {
+          "description": "The time the pull request was created at.",
+          "format": "date-time",
+          "title": "Created at",
+          "type": "string"
+        },
+        "closed-at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The time the pull request was closed at.",
+          "title": "Closed at"
+        },
+        "merged-at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The time the pull request was merged at.",
+          "title": "Merged at"
+        },
+        "queued-at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The time the pull request was queued at for merge.",
+          "title": "Queued at"
+        },
+        "queue-merge-started-at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The time the pull request mergeability checks have started at. This attribute does not work yet when using partition rules.",
+          "title": "Queue merge started at"
+        },
+        "schedule": {
+          "default": "The current time will be compared against this schedule to validate this attribute.",
+          "title": "Schedule",
+          "type": "string"
+        },
+        "sender-permission": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/GitHubRepositoryPermission"
+            }
+          ],
+          "description": "The permission of the command author.",
+          "title": "Sender permission"
+        },
+        "sender": {
+          "description": "The GitHub login of the command author.",
+          "title": "Sender",
+          "type": "string"
+        }
+      },
+      "required": [
+        "draft",
+        "merged",
+        "mergify-configuration-changed",
+        "closed",
+        "locked",
+        "linear-history",
+        "conflict",
+        "branch-protection-review-decision",
+        "queue-frozen",
+        "number",
+        "queue-position",
+        "author",
+        "merged-by",
+        "merge-commit-sha",
+        "milestone",
+        "base",
+        "head",
+        "head-repo-full-name",
+        "title",
+        "body",
+        "body-raw",
+        "repository-name",
+        "repository-full-name",
+        "queue-dequeue-reason",
+        "queue-name",
+        "queue-freeze-reason",
+        "queue-partition-name",
+        "assignee",
+        "label",
+        "review-requested",
+        "approved-reviews-by",
+        "dismissed-reviews-by",
+        "changes-requested-reviews-by",
+        "commented-reviews-by",
+        "check-success",
+        "check-failure",
+        "check-neutral",
+        "check-timed-out",
+        "check-skipped",
+        "check-pending",
+        "check",
+        "check-stale",
+        "commits-unverified",
+        "review-threads-resolved",
+        "review-threads-unresolved",
+        "files",
+        "added-files",
+        "modified-files",
+        "removed-files",
+        "added-lines",
+        "modified-lines",
+        "deleted-lines",
+        "co-authors",
+        "commits-behind",
+        "depends-on",
+        "dependabot-dependency-name",
+        "dependabot-dependency-type",
+        "dependabot-update-type",
+        "commits",
+        "current-datetime",
+        "updated-at",
+        "created-at",
+        "closed-at",
+        "merged-at",
+        "queued-at",
+        "queue-merge-started-at",
+        "sender-permission",
+        "sender"
+      ],
+      "title": "PullRequestAttributes",
+      "type": "object"
     },
     "PullRequestRuleConditionsModel": {
       "items": {
@@ -1630,7 +2322,10 @@
         "merge_bot_account": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -1644,7 +2339,10 @@
         "update_bot_account": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -1684,7 +2382,10 @@
         "commit_message_template": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -1807,7 +2508,7 @@
           "type": "integer"
         },
         "batch_max_wait_time": {
-          "default": "PT30S",
+          "default": "30 s",
           "description": "The maximum amount of time to wait before creating a batch when the batch is not full.",
           "title": "Batch Max Wait Time",
           "type": "string"
@@ -1929,7 +2630,10 @@
         "commit_message_template": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -1942,7 +2646,10 @@
         "merge_bot_account": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -1955,7 +2662,10 @@
         "update_bot_account": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -2071,7 +2781,7 @@
           "type": "integer"
         },
         "batch_max_wait_time": {
-          "default": "PT30S",
+          "default": "30 s",
           "description": "The maximum amount of time to wait before creating a batch when the batch is not full.",
           "title": "Batch Max Wait Time",
           "type": "string"
@@ -2193,7 +2903,10 @@
         "commit_message_template": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -2206,7 +2919,10 @@
         "merge_bot_account": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -2219,7 +2935,10 @@
         "update_bot_account": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -2277,7 +2996,10 @@
         "bot_account": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -2303,7 +3025,10 @@
         "bot_account": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -2415,7 +3140,10 @@
         "message": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -2428,7 +3156,10 @@
         "bot_account": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -2453,7 +3184,10 @@
         "bot_account": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
@@ -2478,19 +3212,16 @@
       "title": "SquashActionModel",
       "type": "object"
     },
-    "Template": {
-      "description": "A string template using the Jinja2 syntax.",
-      "properties": {},
-      "title": "Template",
-      "type": "string"
-    },
     "UpdateActionModel": {
       "additionalProperties": false,
       "properties": {
         "bot_account": {
           "anyOf": [
             {
-              "$ref": "#/$defs/Template"
+              "description": "A string template using the Jinja2 syntax.",
+              "format": "template",
+              "title": "Template",
+              "type": "string"
             },
             {
               "type": "null"
