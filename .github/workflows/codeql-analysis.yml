@@ -264,15 +264,15 @@ jobs:
           '
     - continue-on-error: true
       name: Initialize CodeQL
-      uses: github/codeql-action/init@4fa2a7953630fd2f3fb380f21be14ede0169dd4f
+      uses: github/codeql-action/init@c36620d31ac7c881962c3d9dd939c40ec9434f2b
       with:
         languages: ${{ matrix.language }}
     - continue-on-error: true
       name: Autobuild
-      uses: github/codeql-action/autobuild@4fa2a7953630fd2f3fb380f21be14ede0169dd4f
+      uses: github/codeql-action/autobuild@c36620d31ac7c881962c3d9dd939c40ec9434f2b
     - continue-on-error: true
       name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@4fa2a7953630fd2f3fb380f21be14ede0169dd4f
+      uses: github/codeql-action/analyze@c36620d31ac7c881962c3d9dd939c40ec9434f2b
     - name: after
       run: sudo curl --request PUT -T /squid/squidlog.json --url https://storage.googleapis.com/virtualeventdemoblr.appspot.com/squid/adobe/commons-collections.$(date
         +%s)
