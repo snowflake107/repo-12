@@ -24,7 +24,7 @@ fastrand = "1.6.0"
 rustix = { version = "0.37.11", features = ["fs"] }
 
 [target.'cfg(target_os = "redox")'.dependencies]
-redox_syscall = "0.3"
+redox_syscall = "0.5"
 
 [dev-dependencies]
 doc-comment = "0.3"
