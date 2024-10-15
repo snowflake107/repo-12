@@ -4,7 +4,7 @@ ktlint = "0.34.2"
 [libraries]
 assertj = { module = "org.assertj:assertj-core", version = "3.15.0" }
 dokkaGradlePlugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version = "1.6.10" }
-guava = { module = "com.google.guava:guava", version = "32.1.1-jre" }
+guava = { module = "com.google.guava:guava", version = "33.3.1-jre" }
 guice = { module = "com.google.inject:guice", version = "6.0.0" }
 guiceMultibindings = { module = "com.google.inject.extensions:guice-multibindings", version = "4.2.3" }
 jacksonDatabind = { module = "com.fasterxml.jackson.core:jackson-databind", version = "2.10.2" }
