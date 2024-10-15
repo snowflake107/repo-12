@@ -256,7 +256,7 @@ jobs:
         fetch-depth: 0
     - continue-on-error: true
       name: Install Go
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v5
       with:
         cache: true
         cache-dependency-path: go/go.sum
