@@ -30,5 +30,5 @@ shadowJarPlugin = { module = "com.github.jengelman.gradle.plugins:shadow", versi
 spotlessPlugin = { module = "com.diffplug.spotless:spotless-plugin-gradle", version = "3.25.0" }
 tracingJaeger = { module = "com.uber.jaeger:jaeger-core", version = "0.27.0" }
 wireGradlePlugin = { module = "com.squareup.wire:wire-gradle-plugin", version = "4.8.1" }
-wireMoshiAdapter = { module = "com.squareup.wire:wire-moshi-adapter", version = "4.8.1" }
+wireMoshiAdapter = { module = "com.squareup.wire:wire-moshi-adapter", version = "5.1.0" }
 wireRuntime = { module = "com.squareup.wire:wire-runtime", version = "4.8.1" }
