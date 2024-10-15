@@ -419,11 +419,7 @@
       "additionalProperties": false,
       "properties": {
         "backport": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/CommandRestrictionsModel"
-            }
-          ],
+          "$ref": "#/$defs/CommandRestrictionsModel",
           "default": {
             "conditions": [
               "sender-permission >= write"
@@ -431,11 +427,7 @@
           }
         },
         "copy": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/CommandRestrictionsModel"
-            }
-          ],
+          "$ref": "#/$defs/CommandRestrictionsModel",
           "default": {
             "conditions": [
               "sender-permission >= write"
@@ -443,11 +435,7 @@
           }
         },
         "dequeue": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/CommandRestrictionsModel"
-            }
-          ],
+          "$ref": "#/$defs/CommandRestrictionsModel",
           "default": {
             "conditions": [
               "sender-permission >= write"
@@ -455,11 +443,7 @@
           }
         },
         "queue": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/CommandRestrictionsModel"
-            }
-          ],
+          "$ref": "#/$defs/CommandRestrictionsModel",
           "default": {
             "conditions": [
               "sender-permission >= write"
@@ -467,11 +451,7 @@
           }
         },
         "rebase": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/CommandRestrictionsModel"
-            }
-          ],
+          "$ref": "#/$defs/CommandRestrictionsModel",
           "default": {
             "conditions": [
               {
@@ -484,11 +464,7 @@
           }
         },
         "refresh": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/CommandRestrictionsModel"
-            }
-          ],
+          "$ref": "#/$defs/CommandRestrictionsModel",
           "default": {
             "conditions": [
               {
@@ -501,11 +477,7 @@
           }
         },
         "requeue": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/CommandRestrictionsModel"
-            }
-          ],
+          "$ref": "#/$defs/CommandRestrictionsModel",
           "default": {
             "conditions": [
               "sender-permission >= write"
@@ -513,11 +485,7 @@
           }
         },
         "squash": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/CommandRestrictionsModel"
-            }
-          ],
+          "$ref": "#/$defs/CommandRestrictionsModel",
           "default": {
             "conditions": [
               {
@@ -530,11 +498,7 @@
           }
         },
         "unqueue": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/CommandRestrictionsModel"
-            }
-          ],
+          "$ref": "#/$defs/CommandRestrictionsModel",
           "default": {
             "conditions": [
               "sender-permission >= write"
@@ -542,11 +506,7 @@
           }
         },
         "update": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/CommandRestrictionsModel"
-            }
-          ],
+          "$ref": "#/$defs/CommandRestrictionsModel",
           "default": {
             "conditions": [
               {
@@ -1397,11 +1357,7 @@
           "type": "string"
         },
         "conditions": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/PartitionRuleConditionsModel"
-            }
-          ],
+          "$ref": "#/$defs/PartitionRuleConditionsModel",
           "description": "List of conditions to determine the partition(s) in which the pull request will be queued. If a pull request matches no partition, it is added to the fallback partition if defined. Otherwise it is added to every partition."
         },
         "fallback_partition": {
@@ -1500,11 +1456,7 @@
           "type": "string"
         },
         "conditions": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/PriorityRuleConditionsModel"
-            }
-          ],
+          "$ref": "#/$defs/PriorityRuleConditionsModel",
           "description": "The list of conditions that needs to match to assign priority to the pull request."
         },
         "priority": {
@@ -2100,16 +2052,12 @@
           "title": "Queue merge started at"
         },
         "schedule": {
-          "default": "The current time will be compared against this schedule to validate this attribute.",
+          "description": "The current time will be compared against this schedule to validate this attribute.",
           "title": "Schedule",
           "type": "string"
         },
         "sender-permission": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/GitHubRepositoryPermission"
-            }
-          ],
+          "$ref": "#/$defs/GitHubRepositoryPermission",
           "description": "The permission of the command author.",
           "title": "Sender permission"
         },
@@ -2186,6 +2134,7 @@
         "merged-at",
         "queued-at",
         "queue-merge-started-at",
+        "schedule",
         "sender-permission",
         "sender"
       ],
@@ -2247,19 +2196,11 @@
           "description": "If the rule is disabled, the reason why it's disabled."
         },
         "conditions": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/PullRequestRuleConditionsModel"
-            }
-          ],
+          "$ref": "#/$defs/PullRequestRuleConditionsModel",
           "description": "The conditions that must be met for the rule to be evaluated."
         },
         "actions": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/ActionsModel"
-            }
-          ],
+          "$ref": "#/$defs/ActionsModel",
           "description": "The actions to perform when the rule matches."
         }
       },
@@ -2447,11 +2388,7 @@
       "additionalProperties": false,
       "properties": {
         "priority_rules": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/PriorityRulesModel"
-            }
-          ],
+          "$ref": "#/$defs/PriorityRulesModel",
           "configuration_deprecated_attribute": {
             "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `priority_rules` attribute in the `queue_rules` section. The priority rules must now be set at the top level of the configuration file.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules",
             "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `priority_rules` attribute in the `queue_rules` section. The priority rules must now be set at the top level of the configuration file.**\n> A brownout is planned on October 26th, 2024.\n> This option will be removed on November 26th, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules"
@@ -2460,19 +2397,11 @@
           "description": "*This attribute is deprecated in favor of `priority_rules` at the top level of the Mergify configuration file.* The list of priority rules a pull request can match in order to be prioritized when added to a queue. The rule with the highest priority value wins."
         },
         "queue_conditions": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/QueueRuleMergeConditionsModel"
-            }
-          ],
+          "$ref": "#/$defs/QueueRuleMergeConditionsModel",
           "description": "The list of conditions that needs to match to queue the pull request."
         },
         "merge_conditions": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/QueueRuleMergeConditionsModel"
-            }
-          ],
+          "$ref": "#/$defs/QueueRuleMergeConditionsModel",
           "description": "The list of conditions to match to get the queued pull request merged. This automatically includes the `queue_conditions`. In case of speculative merge pull request, the merge conditions starting by check- are evaluated against the temporary pull request instead of the original one."
         },
         "branch_protection_injection_mode": {
@@ -2720,11 +2649,7 @@
       "additionalProperties": false,
       "properties": {
         "priority_rules": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/PriorityRulesModel"
-            }
-          ],
+          "$ref": "#/$defs/PriorityRulesModel",
           "configuration_deprecated_attribute": {
             "deprecated_summary_ghes_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `priority_rules` attribute in the `queue_rules` section. The priority rules must now be set at the top level of the configuration file.**\n> This option will be removed in a future version.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules",
             "deprecated_summary_saas_mode": "\n:bangbang: **Action Required** :bangbang:\n> **The configuration uses the deprecated `priority_rules` attribute in the `queue_rules` section. The priority rules must now be set at the top level of the configuration file.**\n> A brownout is planned on October 26th, 2024.\n> This option will be removed on November 26th, 2024.\n> For more information: https://docs.mergify.com/configuration/file-format/#priority-rules"
@@ -2733,19 +2658,11 @@
           "description": "*This attribute is deprecated in favor of `priority_rules` at the top level of the Mergify configuration file.* The list of priority rules a pull request can match in order to be prioritized when added to a queue. The rule with the highest priority value wins."
         },
         "queue_conditions": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/QueueRuleMergeConditionsModel"
-            }
-          ],
+          "$ref": "#/$defs/QueueRuleMergeConditionsModel",
           "description": "The list of conditions that needs to match to queue the pull request."
         },
         "merge_conditions": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/QueueRuleMergeConditionsModel"
-            }
-          ],
+          "$ref": "#/$defs/QueueRuleMergeConditionsModel",
           "description": "The list of conditions to match to get the queued pull request merged. This automatically includes the `queue_conditions`. In case of speculative merge pull request, the merge conditions starting by check- are evaluated against the temporary pull request instead of the original one."
         },
         "branch_protection_injection_mode": {

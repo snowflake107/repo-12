@@ -8669,11 +8669,7 @@
       "Queue": {
         "properties": {
           "branch": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Branch"
-              }
-            ],
+            "$ref": "#/components/schemas/Branch",
             "description": "The branch of this queue"
           },
           "pull_requests": {
@@ -9468,11 +9464,7 @@
             "description": "The name of the queue"
           },
           "time_to_merge": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TimeToMergeResponse"
-              }
-            ],
+            "$ref": "#/components/schemas/TimeToMergeResponse",
             "description": "The time to merge data for the partition's queue"
           }
         },
@@ -9646,11 +9638,7 @@
             "description": "The effective priority of this pull request"
           },
           "queue_rule": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/QueueRule"
-              }
-            ],
+            "$ref": "#/components/schemas/QueueRule",
             "description": "The queue rule associated to this pull request"
           },
           "queued_at": {
@@ -9721,11 +9709,7 @@
             "description": "The effective priority of this pull request"
           },
           "queue_rule": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/QueueRule"
-              }
-            ],
+            "$ref": "#/components/schemas/QueueRule",
             "description": "The queue rule associated to this pull request"
           },
           "queued_at": {
