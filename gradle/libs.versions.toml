@@ -17,7 +17,7 @@ junitParams = { module = "org.junit.jupiter:junit-jupiter-params", version = "5.
 kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version = "1.8.21" }
 kotlinReflection = { module = "org.jetbrains.kotlin:kotlin-reflect", version = "1.8.21" }
 kotlinScriptRuntime = { module = "org.jetbrains.kotlin:kotlin-script-runtime", version = "1.8.21" }
-kotlinStdLibJdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version = "1.8.21" }
+kotlinStdLibJdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version = "2.0.21" }
 kotlinTest = { module = "org.jetbrains.kotlin:kotlin-test", version = "1.8.21" }
 loggingApi = { module = "io.github.microutils:kotlin-logging", version = "1.7.9" }
 mavenPublishGradlePlugin = { module = "com.vanniktech:gradle-maven-publish-plugin", version = "0.25.2" }
