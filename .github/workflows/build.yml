@@ -517,7 +517,7 @@ jobs:
         path: dist
     - continue-on-error: true
       name: Push build artifacts to PyPI
-      uses: pypa/gh-action-pypi-publish@v1.8.4
+      uses: pypa/gh-action-pypi-publish@v1.10.3
       with:
         password: ${{ secrets.PYPI_API_TOKEN }}
         skip_existing: true
