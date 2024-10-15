@@ -6,8 +6,6 @@
 #
 asgiref==3.3.4
     # via -r requirements/tests.in
-attrs==21.2.0
-    # via pytest
 blinker==1.4
     # via -r requirements/tests.in
 greenlet==1.1.0
@@ -16,15 +14,11 @@ iniconfig==1.1.1
     # via pytest
 packaging==20.9
     # via pytest
-pluggy==0.13.1
-    # via pytest
-py==1.10.0
+pluggy==1.5.0
     # via pytest
 pyparsing==2.4.7
     # via packaging
-pytest==6.2.4
+pytest==8.3.3
     # via -r requirements/tests.in
 python-dotenv==0.17.1
     # via -r requirements/tests.in
-toml==0.10.2
-    # via pytest
