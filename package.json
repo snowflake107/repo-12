@@ -174,7 +174,7 @@
 		"@types/vscode": "^1.66.0",
 		"@typescript-eslint/eslint-plugin": "^7.10.0",
 		"cross-env": "^7.0.3",
-		"esbuild": "^0.21.3",
+		"esbuild": "^0.24.0",
 		"esbuild-register": "^3.5.0",
 		"eslint": "^8.57.0",
 		"fishery": "^2.2.2",
