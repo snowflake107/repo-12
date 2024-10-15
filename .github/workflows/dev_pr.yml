@@ -257,7 +257,7 @@ jobs:
     - continue-on-error: true
       if: "(github.event.action == 'opened' ||\n github.event.action == 'edited')\n"
       name: Comment JIRA link
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: 'const script = require(`${process.env.GITHUB_WORKSPACE}/.github/workflows/dev_pr/link.js`);
@@ -268,7 +268,7 @@ jobs:
     - continue-on-error: true
       if: "(github.event.action == 'opened' ||\n github.event.action == 'edited')\n"
       name: Check title
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: 'const script = require(`${process.env.GITHUB_WORKSPACE}/.github/workflows/dev_pr/title_check.js`);
@@ -279,7 +279,7 @@ jobs:
     - continue-on-error: true
       if: "(github.event.action == 'opened' ||\n github.event.action == 'edited')\n"
       name: Check Issue
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       with:
         debug: true
         github-token: ${{ secrets.GITHUB_TOKEN }}
