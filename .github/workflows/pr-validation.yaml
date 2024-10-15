@@ -249,7 +249,7 @@ jobs:
       uses: actions/checkout@v4
     - continue-on-error: true
       name: reviewdog
-      uses: reviewdog/action-setup@4ada0d03764db369df4069af8fbc514388a3e4fe
+      uses: reviewdog/action-setup@3f401fe1d58fe77e10d665ab713057375e39b887
       with:
         reviewdog_version: latest
     - continue-on-error: true
