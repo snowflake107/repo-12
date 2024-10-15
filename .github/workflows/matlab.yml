@@ -259,7 +259,7 @@ jobs:
       run: sudo apt-get install ninja-build
     - continue-on-error: true
       name: Install MATLAB
-      uses: matlab-actions/setup-matlab@v1
+      uses: matlab-actions/setup-matlab@v2
     - continue-on-error: true
       name: Install ccache
       run: sudo apt-get install ccache
