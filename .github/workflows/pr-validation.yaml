@@ -549,7 +549,7 @@ jobs:
         go-version-file: go.mod
     - continue-on-error: true
       name: golangci-lint
-      uses: golangci/golangci-lint-action@v3.7.0
+      uses: golangci/golangci-lint-action@v6.1.1
       with:
         version: v1.55.2
     - name: after
