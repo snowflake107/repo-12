@@ -550,7 +550,7 @@ jobs:
         version: v0.15.1
     - continue-on-error: true
       name: Install cosign
-      uses: sigstore/cosign-installer@v3.4.0
+      uses: sigstore/cosign-installer@v3.7.0
       with:
         cosign-release: v2.2.2
     - continue-on-error: true
