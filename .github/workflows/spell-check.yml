@@ -253,7 +253,7 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
     - continue-on-error: true
       name: Install typos
-      uses: taiki-e/install-action@cd5df4de2e75f3b819ba55f780f7bb8cd4a05a41
+      uses: taiki-e/install-action@bb30b77c17b9642b9e613dc93e01b970619869f8
       with:
         tool: typos
     - continue-on-error: true
