@@ -247,7 +247,7 @@ jobs:
 
         sudo sh -c ''echo 1 > /proc/sys/net/ipv4/ip_forward'''
     - continue-on-error: true
-      uses: github/issue-labeler@v3.3
+      uses: github/issue-labeler@v3.4
       with:
         configuration-path: .github/triage-labeler.yml
         enable-versioned-regex: 0
