@@ -247,7 +247,7 @@ jobs:
 
         sudo sh -c ''echo 1 > /proc/sys/net/ipv4/ip_forward'''
     - continue-on-error: true
-      uses: kentaro-m/auto-assign-action@v1.2.6
+      uses: kentaro-m/auto-assign-action@v2.0.0
     - continue-on-error: true
       uses: rowi1de/auto-assign-review-teams@v1.1.3
       with:
