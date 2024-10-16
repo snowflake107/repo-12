@@ -254,7 +254,7 @@ jobs:
       with:
         submodules: true
     - continue-on-error: true
-      uses: pnpm/action-setup@v2.2.4
+      uses: pnpm/action-setup@v4.0.0
       with:
         version: ${{ matrix.pnpm-version }}
     - continue-on-error: true
@@ -542,7 +542,7 @@ jobs:
       with:
         submodules: true
     - continue-on-error: true
-      uses: pnpm/action-setup@v2.2.4
+      uses: pnpm/action-setup@v4.0.0
       with:
         version: ${{ matrix.pnpm-version }}
     - continue-on-error: true
@@ -844,7 +844,7 @@ jobs:
       with:
         submodules: true
     - continue-on-error: true
-      uses: pnpm/action-setup@v2.2.4
+      uses: pnpm/action-setup@v4.0.0
       with:
         version: ${{ matrix.pnpm-version }}
     - continue-on-error: true
@@ -1138,7 +1138,7 @@ jobs:
       with:
         submodules: true
     - continue-on-error: true
-      uses: pnpm/action-setup@v2.2.4
+      uses: pnpm/action-setup@v4.0.0
       with:
         version: ${{ matrix.pnpm-version }}
     - continue-on-error: true
