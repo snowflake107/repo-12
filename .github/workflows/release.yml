@@ -269,7 +269,7 @@ jobs:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       id: changesets
       name: Create Release Pull Request or Publish to npm
-      uses: changesets/action@v1.4.1
+      uses: changesets/action@v1.4.9
       with:
         commit: 'chore: version packages'
         publish: pnpm changeset:release
