@@ -259,7 +259,7 @@ jobs:
         INPUT_SIZES: "{\n  \"0\": \"XS\",\n  \"30\": \"S\",\n  \"100\": \"M\",\n \
           \ \"250\": \"L\",\n  \"500\": \"XL\",\n  \"1000\": \"XXL\",\n  \"1500\"\
           : \"OHLAWDHECOMIN\"\n}\n"
-      uses: pascalgn/size-label-action@v0.5.0
+      uses: pascalgn/size-label-action@v0.5.4
     - continue-on-error: true
       uses: actions/labeler@v5
       with:
