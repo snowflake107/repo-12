@@ -534,7 +534,7 @@ jobs:
           '
     - continue-on-error: true
       name: Install dependencies
-      uses: py-actions/py-dependency-install@v2.1.0
+      uses: py-actions/py-dependency-install@v4.1.0
       with:
         path: tests/requirements.txt
     - continue-on-error: true
