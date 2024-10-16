@@ -16,7 +16,7 @@ clap = { version = "4.4.8", features = ["derive", "env"] }
 config = "0.14.0"
 criterion = { version = "0.5.1", features = ["async", "async_futures"] }
 dotenv = "0.15.0"
-alloy = { version = "0.3", features = [
+alloy = { version = "0.4", features = [
     "providers",
     "contract",
     "serde",
