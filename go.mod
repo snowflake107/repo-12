@@ -16,17 +16,17 @@ require (
 	github.com/hashicorp/golang-lru v0.5.4
 	github.com/honeycombio/dynsampler-go v0.2.1
 	github.com/honeycombio/husky v0.6.0
-	github.com/honeycombio/libhoney-go v1.15.8
+	github.com/honeycombio/libhoney-go v1.23.1
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/json-iterator/go v1.1.12
-	github.com/klauspost/compress v1.13.6
+	github.com/klauspost/compress v1.17.8
 	github.com/leodido/go-urn v1.2.0 // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus/client_golang v1.11.0
 	github.com/rcrowley/go-metrics v0.0.0-20200313005456-10cdbea86bc0
 	github.com/sirupsen/logrus v1.8.1
 	github.com/spf13/viper v1.10.1
-	github.com/stretchr/testify v1.7.0
+	github.com/stretchr/testify v1.9.0
 	github.com/vmihailenco/msgpack/v4 v4.3.11
 	go.opentelemetry.io/proto/otlp v0.9.0
 	golang.org/x/net v0.0.0-20210913180222-943fd674d43e // indirect
