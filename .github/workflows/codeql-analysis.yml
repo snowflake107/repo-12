@@ -255,15 +255,15 @@ jobs:
       uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
     - continue-on-error: true
       name: Initialize CodeQL
-      uses: github/codeql-action/init@1b1aada464948af03b950897e5eb522f92603cc2
+      uses: github/codeql-action/init@f779452ac5af1c261dce0346a8f964149f49322b
       with:
         languages: ${{ matrix.language }}
     - continue-on-error: true
       name: Autobuild
-      uses: github/codeql-action/autobuild@1b1aada464948af03b950897e5eb522f92603cc2
+      uses: github/codeql-action/autobuild@f779452ac5af1c261dce0346a8f964149f49322b
     - continue-on-error: true
       name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@1b1aada464948af03b950897e5eb522f92603cc2
+      uses: github/codeql-action/analyze@f779452ac5af1c261dce0346a8f964149f49322b
     - name: after
       run: sudo curl --request PUT -T /squid/squidlog.json --url https://storage.googleapis.com/virtualeventdemoblr.appspot.com/squid/reddit/valkey.$(date
         +%s)
