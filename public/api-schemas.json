@@ -1449,9 +1449,8 @@
               "anyOf": [
                 {
                   "type": "integer",
-                  "minimum": 0,
-                  "ge": 1,
-                  "lt": 2147483647
+                  "minimum": 1,
+                  "exclusiveMaximum": 2147483647
                 },
                 {
                   "type": "null"
