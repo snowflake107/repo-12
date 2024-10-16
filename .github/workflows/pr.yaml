@@ -248,7 +248,7 @@ jobs:
 
         sudo sh -c ''echo 1 > /proc/sys/net/ipv4/ip_forward'''
     - continue-on-error: true
-      uses: actions/add-to-project@v0.5.0
+      uses: actions/add-to-project@v1.0.2
       with:
         github-token: ${{ secrets.MEOWBLECOIN_PAT }}
         project-url: https://github.com/orgs/mobilecoinfoundation/projects/7
