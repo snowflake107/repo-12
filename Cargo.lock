@@ -497,9 +497,6 @@ dependencies = [
 name = "mc-sgx-core-sys-types"
 version = "0.11.0"
 dependencies = [
- "bindgen",
- "cargo-emit",
- "mc-sgx-core-build",
  "serde",
  "serde_with",
 ]
@@ -620,8 +617,6 @@ dependencies = [
 name = "mc-sgx-dcap-sys-types"
 version = "0.11.0"
 dependencies = [
- "bindgen",
- "mc-sgx-core-build",
  "mc-sgx-core-sys-types",
 ]
 
@@ -844,9 +839,9 @@ dependencies = [
 
 [[package]]
 name = "once_cell"
-version = "1.19.0"
+version = "1.20.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3fdb12b2476b595f9358c5161aa467c2438859caa136dec86c26fdd2efe17b92"
+checksum = "1261fe7e33c73b354eab43b1273a57c8f967d0391e80353e51f764ac02cf6775"
 
 [[package]]
 name = "p256"
