@@ -1,6 +1,6 @@
 {
   "name": "castable-video",
-  "version": "1.0.6",
+  "version": "2.0.0",
   "description": "Cast your video element to the big screen with ease!",
   "type": "module",
   "main": "castable-video.js",
