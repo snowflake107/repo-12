@@ -2143,7 +2143,7 @@ jobs:
     - continue-on-error: true
       run: cargo fmt --all -- --check
     - continue-on-error: true
-      uses: xt0rted/markdownlint-problem-matcher@v2
+      uses: xt0rted/markdownlint-problem-matcher@v3
     - continue-on-error: true
       uses: DavidAnson/markdownlint-cli2-action@v14
       with:
