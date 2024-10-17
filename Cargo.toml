@@ -20,7 +20,7 @@ cfg-if = { version = "1.0" }
 indoc = { version = "0.3.6", optional = true }
 inventory = { version = "0.1.4", optional = true }
 libc = "0.2.62"
-parking_lot = "0.11.0"
+parking_lot = "0.12.3"
 num-bigint = { version = "0.4", optional = true }
 num-complex = { version = "0.4", optional = true }
 # must stay at 0.1.x for Rust 1.41 compatibility
