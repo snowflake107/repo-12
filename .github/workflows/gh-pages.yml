@@ -275,7 +275,7 @@ jobs:
       run: website/script/build
     - continue-on-error: true
       name: Upload artifact
-      uses: actions/upload-pages-artifact@v1
+      uses: actions/upload-pages-artifact@v3
       with:
         path: website/dist
     - name: after
